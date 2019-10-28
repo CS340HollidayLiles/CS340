@@ -10,4 +10,11 @@ webapp = Flask(__name__)
 def hello():
     return "Hello World!";
 
+@webapp.route('/home')
+def home():
+    return render_template('home.html');
+
+@webapp.route('/book')
+def book():
+    return render_template('booking.html');
 
