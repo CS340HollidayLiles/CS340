@@ -10,6 +10,6 @@ webapp = Flask(__name__)
 def hello():
     return "Hello World!";
 
-@webapp.rout('/guestInformation')
+@webapp.route('/guestInformation')
 def guestInformation():
    return "Please enter the following:";
