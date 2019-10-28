@@ -1,1 +1,54 @@
+<html>
+   <head>
+     <title>Payment Information</title>
+     <h1>Payment</h1>
+   </head>
+   <body>
+     <form>
+       <br/>
+       <h2>Please enter the following (required)...</h2>
+       <p>Name on Card:</p>
+       <p>First Name:
+         <input type="text" name="f_name" size="15" maxlength="30"/>
+         Last Name:
+         <input type="text" name="l_name" size="15" maxlength="30"/>
+       </p>
+       <p>Credit Card Type:
+         <select name="types">
+           <option value="Visa">Visa</option>
+           <option value="Mastercard">Mastercard</option>
+         </select>
+       </p>
 
+       <p>Credit Card Number:
+         <input type="text" name="cc_number" size="15" maxlength="30"/>
+       </p>
+       <p>Security Code:
+         <input type="text" name="security_code" size="15" maxlength="30"/>
+       </p>
+       <br/>
+       <h3>Billing Information</h3>
+       <p>House Number:
+         <input type="text" name="house_number" size="15" maxlength="30"/>
+       </p>
+       <p>Street Name:
+         <input type="text" name="street_name" size="15" maxlength="30"/>
+       </p>
+       <p>City:
+         <input type="text" name="city" size="15" maxlength="30"/>
+       </p>
+       <p>State:
+         <input type="text" name="state" size="15" maxlength="30"/>
+       </p>
+       <p>Zip Code:
+         <input type="text" name="zip_code" size="15" maxlength="30"/>
+       </p>
+       <p>Country:
+         <input type="text" name="country" size="15" maxlength="30"/>
+       </p>
+       <br/>
+       <h3>Total: </h3><p>$94.65</p>
+       <input type="submit" name="book_reservation" value="Book Reservation"/>
+     </form>
+   </body>
+</html>
