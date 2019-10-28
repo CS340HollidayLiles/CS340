@@ -20,7 +20,7 @@ def guestInformation():
     #    db.session.commit()
     #    return render_template ('guestInformation.html', info=info)
     #else:
-    return render_template('guestInformation.html')#, Form=oForm)
+    return render_template('guestInformation.html');#, Form=oForm)
 
 @webapp.route('/payment')
 def payment():
@@ -32,7 +32,7 @@ def payment():
     #    db.session.commit()
     #    return render_template ('payment.html', info=info)
     #else:
-    return render_template('payment.html')#, Form=oForm)
+    return render_template('payment.html');#, Form=oForm)
 
 @webapp.route('/confirmation')
 def confirmation():
@@ -44,4 +44,16 @@ def confirmation():
     #    db.session.commit()
     #    return render_template ('confirmation.html', info=info)
     #else:
-    return render_template('confirmation.html')#, Form=oForm)
+    return render_template('confirmation.html');#, Form=oForm)
+
+@webapp.route('/index')
+def index():
+    return render_template('index.html');
+
+@webapp.route('/booking')
+def booking():
+    return render_template('booking.html');
+
+@webapp.route('/home')
+def home():
+    return render_template('home.html');
