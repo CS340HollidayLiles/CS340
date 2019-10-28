@@ -12,4 +12,36 @@ def hello():
 
 @webapp.route('/guestInformation')
 def guestInformation():
-   return "Please enter the following:";
+    #oForm = forms.EnterGuestInfo()
+    #info = models.Information()
+
+    #if request.method == "POST":
+    #    db.session.add(info)
+    #    db.session.commit()
+    #    return render_template ('guestInformation.html', info=info)
+    #else:
+    return render_template('guestInformation.html')#, Form=oForm)
+
+@webapp.route('/payment')
+def payment():
+    #oForm = forms.EnterPayment()
+    #info = models.Information()
+
+    #if request.method == "POST":
+    #    db.session.add(info)
+    #    db.session.commit()
+    #    return render_template ('payment.html', info=info)
+    #else:
+    return render_template('payment.html')#, Form=oForm)
+
+@webapp.route('/confirmation')
+def confirmation():
+    #oForm = forms.ShowConfirmation()
+    #info = models.Information()
+
+    #if request.method == "POST":
+    #    db.session.add(info)
+    #    db.session.commit()
+    #    return render_template ('confirmation.html', info=info)
+    #else:
+    return render_template('confirmation.html')#, Form=oForm)
