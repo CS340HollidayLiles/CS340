@@ -28,7 +28,7 @@
         <label for="pet">Pets</label>
         <input id="pet" type="checkbox">
     </div>
-    <button id="check-button" type="button">Check Availability</button>
+    <button id="check-button" type="button">Search</button>
 </div>
 
 <table>
@@ -38,14 +38,24 @@
         <th>Price</th>
     </thead>
     <tbody>
-    {% for r in rows %}
     <tr>
-        <td> {{r.0}}</td>
-        <td> {{r[1]}}</td>
-        <td> {{r[2]}}</td>
+        <td> King</td>
+        <td> 2</td>
+        <td> $153</td>
         <td> <button type="button">Book Now!</button></td>
     </tr>
-    {% endfor %}
+    <tr>
+        <td> Double Queens</td>
+        <td> 4</td>
+        <td> $145</td>
+        <td> <button type="button">Book Now!</button></td>
+    </tr>
+    <tr>
+        <td> Double Fulls</td>
+        <td> 4</td>
+        <td> $135</td>
+        <td> <button type="button">Book Now!</button></td>
+    </tr>
     </tbody>
 </table>
 
