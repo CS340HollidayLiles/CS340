@@ -53,3 +53,7 @@ def home():
 @webapp.route('/book')
 def book():
     return render_template('booking.html');
+
+@webapp.route('/index')
+def index():
+    return render_template('index.html');
