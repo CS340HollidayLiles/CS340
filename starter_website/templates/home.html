@@ -1,19 +1,36 @@
-<!DOCTYPE HTML>
+<h1 id=title-text" class="site-title">Hotel Name</h1>
 
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hotel Name</title>
+<div id="search" class="container">
+    <div id="room-type" class="search-bar">
+        <label for="type">Room Type</label>
+        <select id="type" class="search-input">
+            <option value="Queen">Queen</option>
+            <option value="King">King</option>
+            <option value="Full">Full</option>
+        </select>
+    </div>
+    <div id="check-in" class="search-bar">
+        <label for="c/i">Check-In</label>
+        <input id="c/i" type="date" class="search-input">
+    </div>
+    <div id="check-out" class="search-bar">
+        <label for="c/o">Check-Out</label>
+        <input id="c/o" type="date" class="search-input">
+    </div>
+    <div id="number-rooms" class="search-bar">
+        <label for="rooms">Number of Rooms</label>
+        <input id="rooms" type="number" class="search-input">
+    </div>
+     <div id="number-guests" class="search-bar">
+         <label for="guests">Number of Guests</label>
+        <input id="guests" type="number" class="search-input">
+    </div>
+    <div id="pets">
+        <label for="pet">Pets</label>
+        <input id="pet" type="checkbox">
+    </div>
+    <button id="check-button" type="button" onclick="window.location.href='/book'">Check Availability</button>
+</div>
 
-    <body id="mainpage-body">
-      <h1 id=title-text" class="site-title">Hotel Name</h1>
 
-      <main>
-        <div id="check-in" class="search-bar">
-            <input type="text" class="search-input">
-        </div>
-        <div id="check-out" class="search-bar">
-            <input type="text" class="search-input">
-        </div>
-        
 
