@@ -45,3 +45,11 @@ def confirmation():
     #    return render_template ('confirmation.html', info=info)
     #else:
     return render_template('confirmation.html')#, Form=oForm)
+
+@webapp.route('/home')
+def home():
+    return render_template('home.html');
+
+@webapp.route('/book')
+def book():
+    return render_template('booking.html');
