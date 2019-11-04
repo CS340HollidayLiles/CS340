@@ -98,3 +98,33 @@
 #check-button {
     margin-top: 28px;
 }
+
+#confirmation {
+
+}
+
+#confirmationpic {
+    height: 70%;
+    width: 35%;
+    padding: 4px;
+}
+
+#guestInfo {
+
+}
+
+#guestInfoPic {
+  height: 70%;
+  width: 35%;
+  padding: 4px;
+}
+
+#paymentInfo {
+
+}
+
+#paymentInfoPic {
+  height: 70%;
+  width: 35%;
+  padding: 4px;
+}
