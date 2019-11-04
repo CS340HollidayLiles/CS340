@@ -1,9 +1,8 @@
-<html>
-   <head>
-     <title>Payment Information</title>
-     <h1>Payment</h1>
-   </head>
+{% extends 'main.html' %}
+
+{% block content %}
    <body>
+     <h1>Payment</h1>
      <form>
        <br/>
        <h2>Please enter the following (required)...</h2>
@@ -51,4 +50,4 @@
        <input type="submit" name="book_reservation" value="Book Reservation"/>
      </form>
    </body>
-</html>
+{% endblock %}
