@@ -1,41 +1,33 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <div class="beach-image">
-        <h1 class="site">Hotel Name</h1>
-    </div>
-    <div id="search" class="container">
-        <div id="room-type" class="search-bar">
-            <label for="type">Room Type</label>
-            <select id="type" class="search-input">
-                <option value="Queen">Queen</option>
-                <option value="King">King</option>
-                <option value="Full">Full</option>
-            </select>
-        </div>
-        <div id="check-in" class="search-bar">
+<body id="home">
+<div class="white">
+    <div class="container">
+       <div id="check-in" class="search">
             <label for="c/i">Check-In</label>
             <input id="c/i" type="date" class="search-input">
         </div>
-        <div id="check-out" class="search-bar">
+        <div id="check-out" class="search">
             <label for="c/o">Check-Out</label>
             <input id="c/o" type="date" class="search-input">
-        </div>
-        <div id="number-rooms" class="search-bar">
-            <label for="rooms">Number of Rooms</label>
-            <input id="rooms" type="number" class="search-input">
-        </div>
-        <div id="number-guests" class="search-bar">
-            <label for="guests">Number of Guests</label>
+        </div> 
+        <div id="number-guests" class="search">
+            <label for="guests">Guests</label>
             <input id="guests" type="number" class="search-input">
-        </div>
-        <div id="pets">
-            <label for="pet">Pets</label>
-            <input id="pet" type="checkbox">
-        </div>
+        </div> 
         <button id="check-button" type="button" onclick="window.location.href='/book'">Check Availability</button>
     </div>
+</div>
+<div class="info"> 
+    <div id="txtbox">
+        <h1>Welcome!</h1>
+        <p id="txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </div>
+    <img id="pic2" src="/static/room.jpg"></img>
+</div> 
+    </body>
 {% endblock %}
-
 
 
