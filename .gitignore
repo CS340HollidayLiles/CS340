@@ -1,2 +1,5 @@
 # Ignore venv folder
 venv/
+
+*.pyc
+__pycache__/

@@ -1,8 +1,13 @@
-from flask import Flask, render_template
+from flask import Blueprint, Flask, render_template
 from flask import request, redirect
+import os.path
 #from db_connector.db_connector import connect_to_database, execute_query
 #create the web application
+#bp = Blueprint('main', __name__)
+
 webapp = Flask(__name__)
+
+#webapp.register_blueprint(main.bp)
 
 #provide a route where requests on the web application can be addressed
 @webapp.route('/hello')
