@@ -1,36 +1,41 @@
-<h1 id=title-text" class="site-title">Hotel Name</h1>
+{% extends 'main.html' %}
 
-<div id="search" class="container">
-    <div id="room-type" class="search-bar">
-        <label for="type">Room Type</label>
-        <select id="type" class="search-input">
-            <option value="Queen">Queen</option>
-            <option value="King">King</option>
-            <option value="Full">Full</option>
-        </select>
+{% block content %}
+    <div class="beach-image">
+        <h1 class="site">Hotel Name</h1>
     </div>
-    <div id="check-in" class="search-bar">
-        <label for="c/i">Check-In</label>
-        <input id="c/i" type="date" class="search-input">
+    <div id="search" class="container">
+        <div id="room-type" class="search-bar">
+            <label for="type">Room Type</label>
+            <select id="type" class="search-input">
+                <option value="Queen">Queen</option>
+                <option value="King">King</option>
+                <option value="Full">Full</option>
+            </select>
+        </div>
+        <div id="check-in" class="search-bar">
+            <label for="c/i">Check-In</label>
+            <input id="c/i" type="date" class="search-input">
+        </div>
+        <div id="check-out" class="search-bar">
+            <label for="c/o">Check-Out</label>
+            <input id="c/o" type="date" class="search-input">
+        </div>
+        <div id="number-rooms" class="search-bar">
+            <label for="rooms">Number of Rooms</label>
+            <input id="rooms" type="number" class="search-input">
+        </div>
+        <div id="number-guests" class="search-bar">
+            <label for="guests">Number of Guests</label>
+            <input id="guests" type="number" class="search-input">
+        </div>
+        <div id="pets">
+            <label for="pet">Pets</label>
+            <input id="pet" type="checkbox">
+        </div>
+        <button id="check-button" type="button" onclick="window.location.href='/book'">Check Availability</button>
     </div>
-    <div id="check-out" class="search-bar">
-        <label for="c/o">Check-Out</label>
-        <input id="c/o" type="date" class="search-input">
-    </div>
-    <div id="number-rooms" class="search-bar">
-        <label for="rooms">Number of Rooms</label>
-        <input id="rooms" type="number" class="search-input">
-    </div>
-     <div id="number-guests" class="search-bar">
-         <label for="guests">Number of Guests</label>
-        <input id="guests" type="number" class="search-input">
-    </div>
-    <div id="pets">
-        <label for="pet">Pets</label>
-        <input id="pet" type="checkbox">
-    </div>
-    <button id="check-button" type="button" onclick="window.location.href='/book'">Check Availability</button>
-</div>
+{% endblock %}
 
 
 
