@@ -1,11 +1,13 @@
 {% extends 'main.html' %}
 
 {% block content %}
-   <body>
-        <h1>Confirmation</h1>
-        <form>
-          <input type="button" value="Go Back" onclick="history.back()">
-        </form>
+   <body id="confirmation">
+      <form>
+        <input type="button" value="Go Back" onclick="history.back()">
+      </form>
+      <h1>THANK YOU</h1>
+      <title>Confirmation</title>
+      <img id="confirmationpic" src="/static/checkmarkpic.jpg"></img>
      <br/>
      <form>
        <h2>Thank you for your payment. Here is your reservation confirmation:</h2>
