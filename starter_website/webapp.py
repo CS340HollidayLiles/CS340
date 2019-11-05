@@ -62,3 +62,7 @@ def book():
 @webapp.route('/index')
 def index():
     return render_template('index.html');
+
+@webapp.route('/admin')
+def admin():
+    return render_template('admin.html');
