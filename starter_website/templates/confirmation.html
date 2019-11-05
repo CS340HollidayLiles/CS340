@@ -2,14 +2,12 @@
 
 {% block content %}
    <body id="confirmation">
-      <form>
-        <input type="button" value="Go Back" onclick="history.back()">
-      </form>
+      <button type="button" onclick="history.back()">&larr;</button>
       <h1>THANK YOU</h1>
       <title>Confirmation</title>
-      <img id="confirmationpic" src="/static/checkmarkpic.jpg"></img>
-     <br/>
-     <form>
+      <div id="guestInfo">
+      <div>
+          <form>
        <h2>Thank you for your payment. Here is your reservation confirmation:</h2>
        <h4>Name: <i>John Doe</i></h4>
        <h4>Check-In Date: <i>October 28, 2019</i></h4>
@@ -26,7 +24,12 @@
        <p>10391 SW 121st St</p>
        <p>Tualatin, OR 97331</p>
        <p>United States</p>
-       <input type="submit" name="book_another_room" value="Book Another Room"/>
+       <button type="button" onclick="window.location.href='/home'">Book Another Room</button>
      </form>
+ </div>
+ <div>
+    <img id="confirmationpic" src="/static/checkmarkpic.jpg"></img>
+</div>
+ </div>
    </body>
 {% endblock %}
