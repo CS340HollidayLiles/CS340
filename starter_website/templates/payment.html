@@ -1,16 +1,16 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<html>
-   <head>
-     <title>Payment Information</title>
-     <h1>Payment</h1>
+<body>
+    <title>Payment Information</title>
+    <div id="payment">
+    <img src="/static/paymentpic.jpg"></img>
+</div> 
+    <h1>Payment</h1>
      <form>
        <input type="button" value="Go Back" onclick="history.back()">
      </form>
-   </head>
-   <body id="paymentInfo">
-     <img id="paymentInfoPic" src="/static/paymentpic.jpg"></img>
+   <div id="paymentInfo">
      <form>
        <br/>
        <h2>Please enter the following (required)...</h2>
@@ -57,5 +57,6 @@
        <h3>Total: </h3><p>$94.65</p>
        <input type="submit" name="book_reservation" value="Book Reservation"/>
      </form>
+   </div>
    </body>
 {% endblock %}

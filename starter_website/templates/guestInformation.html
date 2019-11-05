@@ -1,38 +1,43 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<html>
-   <head>
+<body>
+   <div>
      <title>Guest Information</title>
      <h1>Guest Information</h1>
      <form>
        <input type="button" value="Go Back" onclick="history.back()">
      </form>
-   </head>
-   <body id="guestInfo">
-     <img id="guestInfoPic" src="/static/guestpic.jpg"></img>
-     <form>
-       <br/>
-       <h2>Please enter the following (required)...</h2>
-       <p>First Name:
-         <input type="text" name="f_name" size="15" maxlength="30"/>
-       </p>
-       <p>Last Name:
-         <input type="text" name="l_name" size="15" maxlength="30"/>
-       </p>
-       <p>Phone Number</p>
-       <br/>
-       <p>Country Code:
-         <input type="text" name="country_code" size="15" maxlength="30"/>
-       </p>
-       <p>Area Code:
-         <input type="text" name="area_code" size="15" maxlength="30"/>
-       </p>
-       <p>Extension:
-         <input type="text" name="phone_number" size="15" maxlength="30"/>
-       </p>
-       <input type="submit" name="contine_to_payment" value="Continue to payment"/>
-     </form>
-   </body>
-</html>
+   </div>
+   <div id="guestInfo">
+    <div id="info">
+         <div id="name">
+            <h2>Please enter the following (required)...</h2>
+            <p>First Name:
+                <input type="text" name="f_name" size="15" maxlength="30"/>
+            </p>
+            <p>Last Name:
+                <input type="text" name="l_name" size="15" maxlength="30"/>
+            </p>
+        </div>
+        <div id="phone">
+            <h3>Phone Number</h3>
+            <div id="number">
+            <p class="search" >Country Code:
+                <input type="text" name="country_code"/>
+            </p>
+            <p class="search">Area Code:
+                <input type="text" name="area_code"/>
+            </p>
+            <p class="search">Extension:
+                <input type="text" name="phone_number"/>
+            </p>
+        </div>
+            <input type="submit" name="contine_to_payment" value="Continue to payment"
+            onclick="window.location.href='/payment'"/>
+        </div>
+     </div>
+     <img id="pic2" src="/static/guestpic.jpg"></img>
+   </div>
+     </body>
 {% endblock %}
