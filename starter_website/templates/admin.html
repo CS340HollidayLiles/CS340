@@ -1,62 +1,145 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<html>
-   <head>
+<body>
+   <div>
      <title>Guest Information</title>
      <h1>Guest Information</h1>
      <form>
-       <input type="button" value="Go Back" onclick="history.back()">
+       <input type="button" value=&larr; onclick="history.back()">
      </form>
-   </head>
-   <body id="adminPage">
-     <form id="addRoomForm">
-       <h2>Add Room</h2>
-     </form>
-     <br>
-     <form id="guestUpdateForm">
+   </div>
+   <div>
+          <form >
        <h2>Update Guest</h2>
        <p>First Name:
          <input type="text" name="f_name" size="15" maxlength="30"/>
+         </p>
+         <p>
           Last Name:
          <input type="text" name="l_name" size="15" maxlength="30"/>
+         </p>
+         <p>
          Phone Number
+         </p>
+         <p>
          Country Code:
          <input type="text" name="country_code" size="15" maxlength="30"/>
-         Area Code:
+         </p>
+         <p>Area Code:
          <input type="text" name="area_code" size="15" maxlength="30"/>
-         Extension:
+         </p>
+         <p>Extension:
          <input type="text" name="phone_number" size="15" maxlength="30"/>
+         </p>
        <input type="submit" name="Update Guest" value="Update Guest"/>
+       <input type="submit" name="Delete Guest" value="Delete Guest"/>
      </form>
      <br>
      <form id="paymentUpdateForm">
        <h2>Update Payment</h2>
-     </form>
+        <p>Payment ID:
+            <input type="text"/>
+        </p>
+        <p>Reservation ID:
+            <input type="text"/>
+        </p>
+        <p>First Name:
+         <input type="text" name="f_name" size="15" maxlength="30"/>
+         Last Name:
+         <input type="text" name="l_name" size="15" maxlength="30"/>
+       </p>
+       <p>Credit Card Type:
+         <select name="types">
+           <option value="Visa">Visa</option>
+           <option value="Mastercard">Mastercard</option>
+         </select>
+       </p>
+       <p>Credit Card Number:
+         <input type="text" name="cc_number" size="15" maxlength="30"/>
+       </p>
+       <p>Security Code:
+         <input type="text" name="security_code" size="15" maxlength="30"/>
+       </p>
+       <p>House Number:
+         <input type="text" name="house_number" size="15" maxlength="30"/>
+       </p>
+       <p>Street Name:
+         <input type="text" name="street_name" size="15" maxlength="30"/>
+       </p>
+       <p>City:
+         <input type="text" name="city" size="15" maxlength="30"/>
+       </p>
+       <p>State:
+         <input type="text" name="state" size="15" maxlength="30"/>
+       </p>
+       <p>Zip Code:
+         <input type="text" name="zip_code" size="15" maxlength="30"/>
+       </p>
+       <p>Country:
+         <input type="text" name="country" size="15" maxlength="30"/>
+       </p>
+        <input type="submit" name="Update Payment" value="Update Payment"/>
+       <input type="submit" name="Delete Payment" value="Delete Payment"/>
+</form>
      <br>
      <form id="reservationUpdateForm">
        <h2>Update Reservation</h2>
+       <p>Reservation ID:
+            <input type="string">
+       </p>
+       <p>Guest ID:
+            <input type="string">
+       </p>
+       <p>Payment ID:
+            <input type="string">
+       </p>
+       <p>Room Number:
+            <input tupe="string">
+       </p>
+       <p>Check-In:
+            <input type="date">
+        </p>
+        <p>Check-Out:
+            <input type="date">
+        </p> 
+        <p>Guests:
+            <input type="number">
+        </p>
+        <p>Confirmation Number:
+            <input type="text"/>
+        </p> 
+        <input type="submit" name="Update Reservation" value="Update Reservation"/>
+       <input type="submit" name="Delete Reservation" value="Delete Reservation"/>
      </form>
      <br>
      <form id="roomUpdateForm">
        <h2>Update Room</h2>
+       <p>Room Number:
+            <input type="string">
+       </p>
+       <p>Room Type:
+            <select>
+                <option value="king">King</option>
+                <option value="king suite">King Suite</option>
+                <option value="queen">Double Queen</option>
+                <option value="queen suite">Queen Suite</option>
+            </select>
+       </p>
+       <p>Max Guests Allowed:
+       <select>
+           <option>2</option>
+           <option>4</option>
+           <option>6</option>
+       </select>
+       </p>
+       <p> Price per Night:
+       <input type="string"> 
+        </p>
+        <input type="submit" name="Add Room" value="Add Room"/>
+        <input type="submit" name="Update Room" value="Update Room"/>
+       <input type="submit" name="Delete Room" value="Delete Room"/> 
      </form>
-     <br>
-     <form id="deleteRoomForm">
-       <h2>Delete Room</h2>
-     </form>
-     <br>
-     <form id="deleteReservationForm">
-       <h2>Delete Reservation</h2>
-     </form>
-     <br>
-     <form id="deleteGuestForm">
-       <h2>Delete Guest</h2>
-     </form>
-     <br>
-     <form id="deletePaymentForm">
-       <h2>Delete Payment</h2>
-     </form>
-   </body>
-</html>
+ </div>
+</body>
 {% endblock %}
