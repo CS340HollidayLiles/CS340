@@ -11,22 +11,22 @@ DELETE FROM guest WHERE id = :guest_Id_from_update_form
 SELECT * FROM guest
 
 #Add Room
-INSERT INTO room (room_number, room_type, pets_allowed, max_guests, price) VALUES (:room_number_input, :room_type_input, :pets_allowed_input, :max_guests_input, price_input)
+INSERT INTO room (room_num, room_type, pets_allowed, max_guests, price) VALUES (:room_num_input, :room_type_input, :pets_allowed_input, :max_guests_input, price_input)
 
 #Update Room
-UPDATE room SET room_number= :room_number_input, room_type= :room_type_input, pets_allowed= :pets_allowed_input, max_guests= :max_guests_input, price= :price_input WHERE room_number= :room_number_input
+UPDATE room SET room_num= :room_num_input, room_type= :room_type_input, pets_allowed= :pets_allowed_input, max_guests= :max_guests_input, price= :price_input WHERE room_num= :room_num_input
 
 #Delete Room
-DELETE FROM room WHERE id = :room_number_from_update_form
+DELETE FROM room WHERE id = :room_num_from_update_form
 
 #Read Entire Room Table
 SELECT * FROM room
 
 #Add Reservation
-INSERT INTO reservation (check_in_date, check_out_date, bringing_pets, num_guests, confirmation_num, room_number)  VALUES (:check_in_date_input, :check_out_date_input, :bringing_pets_input, :num_guests_input, :generated_confirmation_num, :room_number_from_browse_rooms_form)
+INSERT INTO reservation (check_in, check_out, bringing_pets, num_guests, confirmation_num, room_num)  VALUES (:check_in_input, :check_out_input, :bringing_pets_input, :num_guests_input, :generated_confirmation_num, :room_num_from_browse_rooms_form)
 
 #Update Reservation
-UPDATE reservation SET check_in_date= :check_in_date_input, check_out_date= :check_out_date_input, bringing_pets= :bringing_pets_input, num_guests= :num_guests_input, confirmation_num= :generated_confirmation_num, room_number= :room_number_from_browse_rooms_form WHERE id= :reservation_id_from_update_form
+UPDATE reservation SET check_in= :check_in_input, check_out= :check_out_input, bringing_pets= :bringing_pets_input, num_guests= :num_guests_input, confirmation_num= :generated_confirmation_num, room_num= :room_num_from_browse_rooms_form WHERE id= :reservation_id_from_update_form
 
 #Delete Reservation
 DELETE FROM reservation WHERE id = :reservation_id_from_update_form
@@ -48,12 +48,12 @@ SELECT * FROM payment
 
 #Check availability button (list open rooms to make a reservation)
 SELECT room.room_type, room.max_guests, room.price AS RoomType, MaxGuests, Price
-WHERE room.room_number NOT IN
+WHERE room.room_num NOT IN
 ( 
-   SELECT room_number FROM reservation r
-   INNER JOIN room ON reservations.room_number = room.room_number
-   WHERE (check_in_date_input <= r.check_in_date AND check_out_date_input >= r.check_out_date)
-      OR (check_in_date_input < r.check_out_date AND check_out_date >= r.check_out_date)
-      OR (r.check_in_date <= check_in_date AND r.check_out_date >= check_in_date_input)
+   SELECT room_num FROM reservation r
+   INNER JOIN room ON reservations.room_num = room.room_num
+   WHERE (check_in_input <= r.check_in AND check_out_input >= r.check_out)
+      OR (check_in_input < r.check_out AND check_out >= r.check_out)
+      OR (r.check_in <= check_in AND r.check_out >= check_in_input)
   AND num_guests_input < room.max_guests
 )
