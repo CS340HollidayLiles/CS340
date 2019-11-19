@@ -11,7 +11,7 @@
        <input type="button" value=&larr; onclick="history.back()">
      </form>
    <div id="paymentInfo">
-     <form>
+     <form id="addpayment" action="/payment" method="post">
        <br/>
        <h2>Please enter the following (required)...</h2>
        <p>Name on Card:</p>
@@ -28,10 +28,10 @@
        </p>
 
        <p>Credit Card Number:
-         <input type="text" name="cc_number" size="15" maxlength="30"/>
+         <input type="text" name="cc_num" size="15" maxlength="30"/>
        </p>
        <p>Security Code:
-         <input type="text" name="security_code" size="15" maxlength="30"/>
+         <input type="text" name="code" size="15" maxlength="30"/>
        </p>
        <br/>
        <h3>Billing Information</h3>
@@ -55,8 +55,8 @@
        </p>
        <br/>
        <h3>Total: </h3><p>$94.65</p>
+       <input type="submit" value="Book Reservation">
      </form>
-     <button type="button" onclick="window.location.href='/confirmation'">Book Reservation</button>
    </div>
    </body>
 {% endblock %}

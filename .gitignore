@@ -1,6 +1,8 @@
 # Ignore venv folder
 venv/
 
+db_connector/
+
 *.pyc
 
 __pycache__/

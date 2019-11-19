@@ -83,43 +83,44 @@
        <input type="submit" name="Delete Payment" value="Delete Payment"/>
 </form>
      <br>
-     <form id="reservationUpdateForm">
+     <form id="reservationUpdateForm" action="/admin" method="post">
        <h2>Update Reservation</h2>
        <p>Reservation ID:
-            <input type="string">
+            <input type="string" name="reserve">
        </p>
        <p>Guest ID:
-            <input type="string">
+            <input type="string" name="guest">
        </p>
        <p>Payment ID:
-            <input type="string">
+            <input type="string" name="payment">
        </p>
        <p>Room Number:
-            <input tupe="string">
+            <input tupe="string" name="room">
        </p>
        <p>Check-In:
-            <input type="date">
+            <input type="date" name="check_in">
         </p>
         <p>Check-Out:
-            <input type="date">
+             <input type="date" name="check_out">
         </p> 
         <p>Guests:
-            <input type="number">
+            <input type="number" name="num">
         </p>
         <p>Confirmation Number:
-            <input type="text"/>
+            <input type="text" name="confirm"/>
         </p> 
+        <input type="submit" name="Add Reservation" value="Add Reservation"/>
         <input type="submit" name="Update Reservation" value="Update Reservation"/>
        <input type="submit" name="Delete Reservation" value="Delete Reservation"/>
      </form>
      <br>
-     <form id="roomUpdateForm">
+     <form id="roomUpdateForm" action="/admin" method="post">
        <h2>Update Room</h2>
        <p>Room Number:
-            <input type="string">
+            <input type="string" name="room">
        </p>
        <p>Room Type:
-            <select>
+            <select name="type">
                 <option value="king">King</option>
                 <option value="king suite">King Suite</option>
                 <option value="queen">Double Queen</option>
@@ -127,14 +128,14 @@
             </select>
        </p>
        <p>Max Guests Allowed:
-       <select>
+       <select name="guests">
            <option>2</option>
            <option>4</option>
            <option>6</option>
        </select>
        </p>
        <p> Price per Night:
-       <input type="string"> 
+       <input type="string" name="price"> 
         </p>
         <input type="submit" name="Add Room" value="Add Room"/>
         <input type="submit" name="Update Room" value="Update Room"/>
