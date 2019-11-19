@@ -102,13 +102,13 @@
         </p>
         <p>Check-Out:
              <input type="date" name="check_out">
-        </p> 
+        </p>
         <p>Guests:
             <input type="number" name="num">
         </p>
         <p>Confirmation Number:
             <input type="text" name="confirm"/>
-        </p> 
+        </p>
         <input type="submit" name="Add Reservation" value="Add Reservation"/>
         <input type="submit" name="Update Reservation" value="Update Reservation"/>
        <input type="submit" name="Delete Reservation" value="Delete Reservation"/>
@@ -135,12 +135,41 @@
        </select>
        </p>
        <p> Price per Night:
-       <input type="string" name="price"> 
+       <input type="string" name="price">
         </p>
         <input type="submit" name="Add Room" value="Add Room"/>
         <input type="submit" name="Update Room" value="Update Room"/>
-       <input type="submit" name="Delete Room" value="Delete Room"/> 
+       <input type="submit" name="Delete Room" value="Delete Room"/>
      </form>
+
+     <h1>List Rooms:</h1>
+     <p><i>Refresh Page after adding a room to see it added below</i></p>
+     <p>{% for row in room %}
+      <li>{{ row }}</li>
+     {% endfor %}
+     </p>
+
+     <h1>List Guests:</h1>
+     <p><i>Refresh Page after adding a guest to see it added below</i></p>
+     <p>{% for row in guest %}
+      <li>{{ row }}</li>
+     {% endfor %}
+     </p>
+
+     <h1>List Reservation:</h1>
+     <p><i>Refresh Page after adding a reservation to see it added below</i></p>
+     <p>{% for row in room %}
+      <li>{{ row }}</li>
+     {% endfor %}
+     </p>
+
+     <h1>List Payments:</h1>
+     <p><i>Refresh Page after adding a payment to see it added below</i></p>
+     <p>{% for row in payment %}
+      <li>{{ row }}</li>
+     {% endfor %}
+     </p>
+
  </div>
 </body>
 {% endblock %}

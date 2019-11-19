@@ -49,14 +49,14 @@ def payment():
         state = request.form['state']
         zip_code = request.form['zip_code']
         country = request.form['country']
-        
+
         db_connection = connect_to_database()
 
         query = 'insert into payment (reservation_id, f_name, l_name, cc_type, cc_num, cc_security_code, house_num, street, city, state, zip_code, country, total_charged) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         data = (28, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
         execute_query(db_connection, query, data)
         return render_template('confirmation.html')
-    else:    
+    else:
         return render_template('payment.html')#, Form=oForm)
 
 @webapp.route('/confirmation')
@@ -115,5 +115,22 @@ def admin():
         execute_query(db_connection, query, data)
         return render_template('admin.html')
 
-    else: 
+    elif request.method == "GET":
+        print("MySQL Results")
+        db_connection = connect_to_database()
+        query1 = 'select * from room'
+        roomresult = execute_query(db_connection, query1)
+        print(roomresult)
+        query2 = 'select * from guest'
+        guestresult = execute_query(db_connection, query2)
+        print(guestresult)
+        query3 = 'select * from reservation'
+        reservationresult = execute_query(db_connection, query3)
+        print(reservationresult)
+        query4 = 'select * from payment'
+        paymentresult = execute_query(db_connection, query4)
+        print(paymentresult)
+        return render_template('admin.html', room=roomresult, guest=guestresult, reservation=reservationresult, payment=paymentresult)
+
+    else:
         return render_template('admin.html');
