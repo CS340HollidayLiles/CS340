@@ -85,37 +85,7 @@ def index():
 
 @webapp.route('/admin', methods=['POST', 'GET'])
 def admin():
-    if request.method == "POST" and "reserve" in request.form:
-        reserve = request.form['reserve']
-        guest = request.form['guest']
-        payment = request.form['payment']
-        room = request.form['room']
-        check_in = request.form['check_in']
-        check_out = request.form['check_out']
-        num = request.form['num']
-        confirm = request.form['confirm']
-
-        db_connection = connect_to_database()
-
-        query = 'insert into reservation (guest_id, payment_id, room_num, check_in, check_out, num_guests, confirmation_num) values (%s,%s,%s,%s,%s,%s,%s)'
-        data = (guest, payment, room, check_in, check_out, num, confirm)
-        execute_query(db_connection, query, data)
-        return render_template('admin.html')
-
-    elif request.method == "POST" and "price" in request.form:
-        room = request.form['room']
-        types = request.form['type']
-        guests = request.form['guests']
-        price = request.form['price']
-
-        db_connection = connect_to_database()
-
-        query = 'insert into room (room_num, room_type, max_guests, price) values (%s,%s,%s,%s)'
-        data = (room, types, guests, price)
-        execute_query(db_connection, query, data)
-        return render_template('admin.html')
-
-    elif request.method == "GET":
+    if request.method == "GET":
         print("MySQL Results")
         db_connection = connect_to_database()
         query1 = 'select * from room'
@@ -132,5 +102,73 @@ def admin():
         print(paymentresult)
         return render_template('admin.html', room=roomresult, guest=guestresult, reservation=reservationresult, payment=paymentresult)
 
+
     else:
-        return render_template('admin.html');
+        if "UpdateGuest" in request.form:
+            print("Update guest")
+            return render_template('admin.html')
+
+        elif "DeleteGuest" in request.form:
+            print("Delete guest")
+            return render_template('admin.html')
+
+        elif "UpdatePayment" in request.form:
+            print("Update payment")
+            return render_template('admin.html')
+
+        elif "DeletePayment" in request.form:
+            print("Delete payment")
+            return render_template('admin.html')
+
+        elif "AddReservation" in request.form:
+            print("insert reservation")
+            reserve = request.form['reserve']
+            guest = request.form['guest']
+            payment = request.form['payment']
+            room = request.form['room']
+            check_in = request.form['check_in']
+            check_out = request.form['check_out']
+            num = request.form['num']
+            confirm = request.form['confirm']
+           
+            db_connection = connect_to_database()
+
+            query = 'insert into reservation (guest_id, payment_id, room_num, check_in, check_out, num_guests, confirmation_num) values (%s,%s,%s,%s,%s,%s,%s)'
+            data = (guest, payment, room, check_in, check_out, num, confirm)
+            execute_query(db_connection, query, data)
+            return render_template('admin.html')
+
+        elif "UpdateReservation" in request.form:
+            print("update reservation")
+            return render_template('admin.html')
+
+        elif "DeleteReservation" in request.form:
+            print("delete reservation")
+            return render_template('admin.html')
+
+        elif "AddRoom" in request.form:
+            print("insert room")
+            room = request.form['room']
+            types = request.form['type']
+            guests = request.form['guests']
+            price = request.form['price']
+
+            db_connection = connect_to_database()
+
+            query = 'insert into room (room_num, room_type, max_guests, price) values (%s,%s,%s,%s)'
+            data = (room, types, guests, price)
+            execute_query(db_connection, query, data)
+            return render_template('admin.html')
+
+        elif "UpdateRoom" in request.form:
+            print("update room")
+            return render_template('admin.html')
+
+        elif "DeleteRoom" in request.form:
+            print("delete room")
+            return render_template('admin.html')
+
+        else:
+
+            print("else")
+            return render_template('admin.html')

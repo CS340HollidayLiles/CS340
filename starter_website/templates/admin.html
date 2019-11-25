@@ -10,7 +10,7 @@
      </form>
    </div>
    <div>
-          <form >
+    <form id="guestUpdateForm" action="/admin" method="post"> 
        <h2>Update Guest</h2>
        <p>First Name:
          <input type="text" name="f_name" size="15" maxlength="30"/>
@@ -32,11 +32,11 @@
          <p>Extension:
          <input type="text" name="phone_number" size="15" maxlength="30"/>
          </p>
-       <input type="submit" name="Update Guest" value="Update Guest"/>
-       <input type="submit" name="Delete Guest" value="Delete Guest"/>
+       <input type="submit" name="UpdateGuest" value="Update"/>
+       <input type="submit" name="DeleteGuest" value="Delete"/>
      </form>
      <br>
-     <form id="paymentUpdateForm">
+     <form id="paymentUpdateForm" action="/admin" method="post">
        <h2>Update Payment</h2>
         <p>Payment ID:
             <input type="text"/>
@@ -79,8 +79,8 @@
        <p>Country:
          <input type="text" name="country" size="15" maxlength="30"/>
        </p>
-        <input type="submit" name="Update Payment" value="Update Payment"/>
-       <input type="submit" name="Delete Payment" value="Delete Payment"/>
+        <input type="submit" name="UpdatePayment" value="Update"/>
+       <input type="submit" name="DeletePayment" value="Delete"/>
 </form>
      <br>
      <form id="reservationUpdateForm" action="/admin" method="post">
@@ -109,9 +109,9 @@
         <p>Confirmation Number:
             <input type="text" name="confirm"/>
         </p>
-        <input type="submit" name="Add Reservation" value="Add Reservation"/>
-        <input type="submit" name="Update Reservation" value="Update Reservation"/>
-       <input type="submit" name="Delete Reservation" value="Delete Reservation"/>
+        <input type="submit" name="AddReservation" value="Add"/>
+        <input type="submit" name="UpdateReservation" value="Update"/>
+       <input type="submit" name="DeleteReservation" value="Delete"/>
      </form>
      <br>
      <form id="roomUpdateForm" action="/admin" method="post">
@@ -137,9 +137,9 @@
        <p> Price per Night:
        <input type="string" name="price">
         </p>
-        <input type="submit" name="Add Room" value="Add Room"/>
-        <input type="submit" name="Update Room" value="Update Room"/>
-       <input type="submit" name="Delete Room" value="Delete Room"/>
+        <input type="submit" name="AddRoom" value="Add"/>
+        <input type="submit" name="UpdateRoom" value="Update"/>
+       <input type="submit" name="DeleteRoom" value="Delete"/>
      </form>
 
      <h1>List Rooms:</h1>
