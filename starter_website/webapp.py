@@ -91,6 +91,7 @@ def admin():
         query1 = 'select * from room'
         roomresult = execute_query(db_connection, query1)
         print(roomresult)
+        #query2 = 'select guest_id as GuestID, reservation_id as ReservationID, f_name as FirstName, l_name as LastName, area_code as AreaCode, phone_number as PhoneNumber from guest'
         query2 = 'select * from guest'
         guestresult = execute_query(db_connection, query2)
         print(guestresult)
@@ -110,6 +111,10 @@ def admin():
 
         elif "DeleteGuest" in request.form:
             print("Delete guest")
+            id = request.form['guest_id']
+            db_connection = connect_to_database()
+            query = 'delete from guest where guest_id = (%s)'
+            execute_query(db_connection, query, id)
             return render_template('admin.html')
 
         elif "UpdatePayment" in request.form:
@@ -118,6 +123,10 @@ def admin():
 
         elif "DeletePayment" in request.form:
             print("Delete payment")
+            id = request.form['payment_id']
+            db_connection = connect_to_database()
+            query = 'delete from payment where payment_id = (%s)'
+            execute_query(db_connection, query, id)
             return render_template('admin.html')
 
         elif "AddReservation" in request.form:
@@ -130,7 +139,7 @@ def admin():
             check_out = request.form['check_out']
             num = request.form['num']
             confirm = request.form['confirm']
-           
+
             db_connection = connect_to_database()
 
             query = 'insert into reservation (guest_id, payment_id, room_num, check_in, check_out, num_guests, confirmation_num) values (%s,%s,%s,%s,%s,%s,%s)'
@@ -144,6 +153,10 @@ def admin():
 
         elif "DeleteReservation" in request.form:
             print("delete reservation")
+            id = request.form['reserve']
+            db_connection = connect_to_database()
+            query = 'delete from reservation where reservation_id = (%s)'
+            execute_query(db_connection, query, id)
             return render_template('admin.html')
 
         elif "AddRoom" in request.form:
@@ -166,6 +179,11 @@ def admin():
 
         elif "DeleteRoom" in request.form:
             print("delete room")
+            num = request.form['room']
+            db_connection = connect_to_database()
+            query = 'delete from room where room_num = (%s)'
+            data = (num, )
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         else:
