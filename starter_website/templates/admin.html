@@ -1,6 +1,13 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<head>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
 <body>
    <div>
      <title>Guest Information</title>
@@ -10,9 +17,12 @@
      </form>
    </div>
    <div>
-    <form id="guestUpdateForm" action="/admin" method="post"> 
+    <form id="guestUpdateForm" action="/admin" method="post">
        <h2>Update Guest</h2>
-       <p>First Name:
+       <p>Guest ID:
+         <input type="text" name="guest_id" size="15" maxlength="30"/>
+         </p>
+         <p>First Name:
          <input type="text" name="f_name" size="15" maxlength="30"/>
          </p>
          <p>
@@ -39,7 +49,7 @@
      <form id="paymentUpdateForm" action="/admin" method="post">
        <h2>Update Payment</h2>
         <p>Payment ID:
-            <input type="text"/>
+            <input type="text"  name="payment_id"/>
         </p>
         <p>Reservation ID:
             <input type="text"/>
@@ -144,10 +154,10 @@
 
      <h1>List Rooms:</h1>
      <p><i>Refresh Page after adding a room to see it added below</i></p>
-     <p>{% for row in room %}
-      <li>{{ row }}</li>
-     {% endfor %}
-     </p>
+      <p>{% for row in room %}
+       <li>{{ row }}</li>
+      {% endfor %}
+      </p>
 
      <h1>List Guests:</h1>
      <p><i>Refresh Page after adding a guest to see it added below</i></p>
