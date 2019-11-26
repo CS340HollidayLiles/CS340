@@ -106,6 +106,18 @@ def admin():
     else:
         if "UpdateGuest" in request.form:
             print("Update guest")
+            guest = request.form['guest']
+            reserve = request.form['reserve']
+            f_name = request.form['f_name']
+            l_name = request.form['l_name']
+            area = request.form['area_code']
+            extension = request.form['phone_number']
+
+            db_connection = connect_to_database()
+
+            query = 'update guest set reservation_id = %s, f_name = %s, l_name = %s, area_code = %s, phone_number = %s where guest_id = %s'
+            data = (reserve, f_name, l_name, area, extension, guest)
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "DeleteGuest" in request.form:
@@ -114,6 +126,27 @@ def admin():
 
         elif "UpdatePayment" in request.form:
             print("Update payment")
+            payment = request.form['payment']
+            reserve = request.form['reserve']
+            f_name = request.form['f_name']
+            l_name = request.form['l_name']
+            types = request.form['types']
+            cc_number = request.form['cc_number']
+            security_code = request.form['security_code']
+            house = request.form['house_number']
+            street = request.form['street_name']
+            city = request.form['city']
+            state = request.form['state']
+            zip_code = request.form['zip_code']
+            country = request.form['country']
+            total = request.form['total']
+
+            db_connection = connect_to_database()
+
+            query = 'update payment set reservation_id = %s, f_name = %s, l_name = %s, cc_num = %s, cc_type = %s, cc_security_code = %s, house_num = %s, street = %s, city = %s, state = %s, zip_code = %s, country = %s, total_charged = %s where payment_id = %s'
+            data = (reserve, f_name, l_name, cc_number, types, security_code, house, street, city, state, zip_code, country, total, payment)
+            execute_query(db_connection, query, data)
+            
             return render_template('admin.html')
 
         elif "DeletePayment" in request.form:
@@ -140,6 +173,20 @@ def admin():
 
         elif "UpdateReservation" in request.form:
             print("update reservation")
+            reserve = request.form['reserve']
+            guest = request.form['guest']
+            payment = request.form['payment']
+            room = request.form['room']
+            check_in = request.form['check_in']
+            check_out = request.form['check_out']
+            num = request.form['num']
+            confirm = request.form['confirm']
+           
+            db_connection = connect_to_database()
+
+            query = 'update reservation set guest_id = %s, payment_id = %s, room_num = %s, check_in = %s, check_out = %s, num_guests = %s, confirmation_num = %s) where reservation_id = %s'
+            data = (guest, payment, room, check_in, check_out, num, confirm, reserve)
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "DeleteReservation" in request.form:
@@ -162,6 +209,16 @@ def admin():
 
         elif "UpdateRoom" in request.form:
             print("update room")
+            room = request.form['room']
+            types = request.form['type']
+            guests = request.form['guests']
+            price = request.form['price']
+
+            db_connection = connect_to_database()
+
+            query = 'update room set room_type = %s, max_guests = %s, price = %s where room_num = %s'
+            data = (types, guests, price, room)
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "DeleteRoom" in request.form:
