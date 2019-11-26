@@ -22,7 +22,10 @@
        <p>Guest ID:
          <input type="text" name="guest_id" size="15" maxlength="30"/>
          </p>
-         <p>First Name:
+        <p> Reservation ID:
+        <input type = "text" name="reserve" size="15" maxlength="30"/>
+        </p>
+       <p>First Name:
          <input type="text" name="f_name" size="15" maxlength="30"/>
          </p>
          <p>
@@ -31,11 +34,7 @@
          </p>
          <p>
          Phone Number
-         </p>
-         <p>
-         Country Code:
-         <input type="text" name="country_code" size="15" maxlength="30"/>
-         </p>
+         </p> 
          <p>Area Code:
          <input type="text" name="area_code" size="15" maxlength="30"/>
          </p>
@@ -50,9 +49,9 @@
        <h2>Update Payment</h2>
         <p>Payment ID:
             <input type="text"  name="payment_id"/>
-        </p>
+            </p>
         <p>Reservation ID:
-            <input type="text"/>
+            <input type="text" name="reserve"/>
         </p>
         <p>First Name:
          <input type="text" name="f_name" size="15" maxlength="30"/>
@@ -88,6 +87,9 @@
        </p>
        <p>Country:
          <input type="text" name="country" size="15" maxlength="30"/>
+       </p>
+       <p>Total Charged:
+        <input type="text" name="total" size="15" maxlength="30"/>
        </p>
         <input type="submit" name="UpdatePayment" value="Update"/>
        <input type="submit" name="DeletePayment" value="Delete"/>
