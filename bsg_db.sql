@@ -19,7 +19,7 @@ create table guest (
 	area_code varchar(3) DEFAULT NULL,
 	phone_number varchar(12) DEFAULT NULL,
 	primary key (guest_id)
-) engine=innodb auto_increment=28 default charset=latin1;
+) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
 drop table if exists payment;
@@ -32,7 +32,7 @@ CREATE TABLE payment (
     l_name varchar(20) DEFAULT NULL,
     cc_num varchar(16) DEFAULT NULL,
     cc_type varchar(20) DEFAULT NULL,
-    cc_security_code varchar(3) DEFAULT NULL,
+    cc_security_code varchar(20) DEFAULT NULL,
     house_num varchar(20) DEFAULT NULL,
     street varchar(20) DEFAULT NULL,
     city varchar(20) DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE payment (
     country varchar(20) DEFAULT NULL,
     total_charged decimal(5,2) DEFAULT NULL,
     PRIMARY KEY (payment_id)
-) engine=innodb auto_increment=28 default charset=latin1;
+) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
 drop table if exists reservation;
@@ -57,7 +57,7 @@ CREATE TABLE reservation (
     num_guests varchar(3) DEFAULT NULL,
     confirmation_num varchar(12) DEFAULT NULL,
     PRIMARY KEY (reservation_id)
-) engine=innodb auto_increment=28 default charset=latin1;
+) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
 drop table if exists room;
@@ -69,7 +69,7 @@ CREATE TABLE room (
     max_guests int(11) DEFAULT NULL,
     price decimal(5,2) DEFAULT NULL,
     PRIMARY KEY (room_num)
-) engine=innodb auto_increment=28 default charset=latin1;
+) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
 drop table if exists guest_room;
@@ -81,7 +81,7 @@ CREATE TABLE guest_room (
     PRIMARY KEY (guest_id, room_num),
     CONSTRAINT gr_fk1 FOREIGN KEY (guest_id) REFERENCES guest  (guest_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT gr_fk2 FOREIGN KEY (room_num) REFERENCES room  (room_num) ON DELETE CASCADE ON UPDATE CASCADE
-) engine=innodb auto_increment=28 default charset=latin1;
+) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
 drop table if exists reservation_room;
@@ -120,11 +120,11 @@ INSERT INTO guest (reservation_id, f_name, l_name, area_code, phone_number)
           (3, "Ana", "Ballard", "971", "483931"), 
           (4, "Lynn", "Mcgee", "493", "293045");
 
-INSERT INTO payment (reservation_id, f_name, l_name, cc_num, cc_security_code, house_num, street, city, state, zip_code, country, total_charged)
+INSERT INTO payment (reservation_id, f_name, l_name, cc_num, cc_type, cc_security_code, house_num, street, city, state, zip_code, country, total_charged)
   VALUES  (2, "Helen", "Torres", "4951236789465123", "846", "Visa","555", "Lafayette Rd.", "Chester", "PA", "19013", "USA", 136.45), 
           (3, "Ana", "Ballard", "3489516278954621", "897", "MasterCard", "89", "Fifth Rd", "Roswell", "GA", "30075", "USA", 243.50), 
           (1, "Steve", "Matthews", "3950682719503845", "456", "American Express", "904", "Pennington Road", "Butler", "PA", "16001", "USA", 594.32), 
-          (4, "Lynn", "Mcgee", "9402859023840532", "256", "Discover", "7343", "Tarkiln Hill Drive", "Ashburn", "VA", "20147", "USA", 145.52);
+          (4, "Lynn", "Mcgee", "9402859023840532", "256", "Discover", "734", "Tarkiln Hill Drive", "Ashburn", "VA", "20147", "USA", 145.52);
 
 UPDATE reservation SET guest_id = 1, payment_id = 3 WHERE reservation_id = 1;
 UPDATE reservation SET guest_id = 2, payment_id = 1 WHERE reservation_id = 2;
