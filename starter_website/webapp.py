@@ -193,7 +193,7 @@ def admin():
            
             db_connection = connect_to_database()
 
-            query = 'update reservation set guest_id = %s, payment_id = %s, room_num = %s, check_in = %s, check_out = %s, num_guests = %s, confirmation_num = %s) where reservation_id = %s'
+            query = 'update reservation set guest_id = %s, payment_id = %s, room_num = %s, check_in = %s, check_out = %s, num_guests = %s, confirmation_num = %s where reservation_id = %s'
             data = (guest, payment, room, check_in, check_out, num, confirm, reserve)
             execute_query(db_connection, query, data)
             return render_template('admin.html')
