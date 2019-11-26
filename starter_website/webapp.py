@@ -123,10 +123,11 @@ def admin():
 
         elif "DeleteGuest" in request.form:
             print("Delete guest")
-            id = request.form['guest_id']
+            num = request.form['guest_id']
             db_connection = connect_to_database()
             query = 'delete from guest where guest_id = (%s)'
-            execute_query(db_connection, query, id)
+            data = (num, )
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "UpdatePayment" in request.form:
@@ -151,15 +152,16 @@ def admin():
             query = 'update payment set reservation_id = %s, f_name = %s, l_name = %s, cc_num = %s, cc_type = %s, cc_security_code = %s, house_num = %s, street = %s, city = %s, state = %s, zip_code = %s, country = %s, total_charged = %s where payment_id = %s'
             data = (reserve, f_name, l_name, cc_number, types, security_code, house, street, city, state, zip_code, country, total, payment)
             execute_query(db_connection, query, data)
-            
+
             return render_template('admin.html')
 
         elif "DeletePayment" in request.form:
             print("Delete payment")
-            id = request.form['payment_id']
+            num = request.form['payment_id']
             db_connection = connect_to_database()
             query = 'delete from payment where payment_id = (%s)'
-            execute_query(db_connection, query, id)
+            data = (num, )
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "AddReservation" in request.form:
@@ -190,7 +192,7 @@ def admin():
             check_out = request.form['check_out']
             num = request.form['num']
             confirm = request.form['confirm']
-           
+
             db_connection = connect_to_database()
 
             query = 'update reservation set guest_id = %s, payment_id = %s, room_num = %s, check_in = %s, check_out = %s, num_guests = %s, confirmation_num = %s where reservation_id = %s'
@@ -200,10 +202,11 @@ def admin():
 
         elif "DeleteReservation" in request.form:
             print("delete reservation")
-            id = request.form['reserve']
+            num = request.form['reserve']
             db_connection = connect_to_database()
             query = 'delete from reservation where reservation_id = (%s)'
-            execute_query(db_connection, query, id)
+            data = (num, )
+            execute_query(db_connection, query, data)
             return render_template('admin.html')
 
         elif "AddRoom" in request.form:
