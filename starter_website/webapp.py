@@ -71,12 +71,30 @@ def confirmation():
     #else:
     return render_template('confirmation.html')#, Form=oForm)
 
-@webapp.route('/home')
+@webapp.route('/home', ['GET'])
 def home():
-    return render_template('home.html');
+    if "Check" in request.form:
+        db_connection = connect_to_database()
 
-@webapp.route('/book')
-def book():
+        c_in = request.form['c/i']
+        c_out = request.form['c/o']
+        guests = request.form['guest']
+
+        query = 'select * from room join reservation_room on room.room_num = reservation_room.room_num
+        join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and
+        ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+
+        data = (guests, c_in, c_out, c_in, c_out);
+
+        result = execute_query(db_connection, query, data);
+
+        return render_template('booking.html', room=result);
+
+    else:
+        return render_template('home.html');
+
+@webapp.route('/book', methods=['GET'])
+def book(): 
     return render_template('booking.html');
 
 @webapp.route('/index')
@@ -88,19 +106,23 @@ def admin():
     if request.method == "GET":
         print("MySQL Results")
         db_connection = connect_to_database()
+        
         query1 = 'select * from room'
         roomresult = execute_query(db_connection, query1)
         print(roomresult)
-        #query2 = 'select guest_id as GuestID, reservation_id as ReservationID, f_name as FirstName, l_name as LastName, area_code as AreaCode, phone_number as PhoneNumber from guest'
+        
         query2 = 'select * from guest'
         guestresult = execute_query(db_connection, query2)
         print(guestresult)
+        
         query3 = 'select * from reservation'
         reservationresult = execute_query(db_connection, query3)
         print(reservationresult)
+        
         query4 = 'select * from payment'
         paymentresult = execute_query(db_connection, query4)
         print(paymentresult)
+        
         return render_template('admin.html', room=roomresult, guest=guestresult, reservation=reservationresult, payment=paymentresult)
 
 
