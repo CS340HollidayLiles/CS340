@@ -154,33 +154,137 @@
        <input type="submit" name="DeleteRoom" value="Delete"/>
      </form>
 
-     <h1>List Rooms:</h1>
+     <h1>Current Rooms:</h1>
      <p><i>Refresh Page after adding a room to see it added below</i></p>
-      <p>{% for row in room %}
-       <li>{{ row }}</li>
-      {% endfor %}
-      </p>
+     <table id="Rooms">
+        <thead>
+          <tr>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Max Guests</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in room %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td> 
+              <td>{{ row[2] }}</td> 
+              <td>{{ row[3] }}</td>
+              <td><input type="submit" name="DeleteRoom" value="Delete"/></td> 
+            </tr>
+          {% endfor %}
+        </tbody> 
+      </table>
 
-     <h1>List Guests:</h1>
+     <h1>Current Guests:</h1>
      <p><i>Refresh Page after adding a guest to see it added below</i></p>
-     <p>{% for row in guest %}
-      <li>{{ row }}</li>
-     {% endfor %}
-     </p>
+     <table id="Guests">
+      <thead>
+        <tr>
+          <th>Guest ID</th>
+          <th>Reservation ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Area Code</th>
+          <th>Phone Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in guest %}
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td> 
+            <td>{{ row[2] }}</td> 
+            <td>{{ row[3] }}</td> 
+            <td>{{ row[4] }}</td> 
+            <td>{{ row[5] }}</td>
+            <td><input type="submit" name="DeleteGuest" value="Delete"/></td> 
+          </tr>
+        {% endfor %}
+      </tbody> 
+    </table>
 
-     <h1>List Reservation:</h1>
+     <h1>Current Reservation:</h1>
      <p><i>Refresh Page after adding a reservation to see it added below</i></p>
-     <p>{% for row in reservation %}
-      <li>{{ row }}</li>
-     {% endfor %}
-     </p>
+     <table id="Reservations">
+        <thead>
+          <tr>
+            <th>Reservation ID</th>
+            <th>Guest ID</th>
+            <th>Payment ID</th>
+            <th>Room Number</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Number of Guests</th>
+            <th>Confirmation Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in reservation %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td> 
+              <td>{{ row[2] }}</td> 
+              <td>{{ row[3] }}</td> 
+              <td>{{ row[4] }}</td> 
+              <td>{{ row[5] }}</td>
+              <td>{{ row[6] }}</td> 
+              <td>{{ row[7] }}</td>
+              <td><input type="submit" name="DeleteReservation" value="Delete"/></td>  
+            </tr>
+          {% endfor %}
+        </tbody> 
+      </table>
 
-     <h1>List Payments:</h1>
+     <h1>Current Payments:</h1>
      <p><i>Refresh Page after adding a payment to see it added below</i></p>
-     <p>{% for row in payment %}
-      <li>{{ row }}</li>
-     {% endfor %}
-     </p>
+     <table id="Payments">
+        <thead>
+          <tr>
+            <th>Payment ID</th>
+            <th>Reservation ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Credit Card Number</th>
+            <th>Credit Card Type</th>
+            <th>Credit Card Security Code</th>
+            <th>House Number</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Country</th>
+            <th>Total Charged</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in payment %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td> 
+              <td>{{ row[2] }}</td> 
+              <td>{{ row[3] }}</td> 
+              <td>{{ row[4] }}</td> 
+              <td>{{ row[5] }}</td>
+              <td>{{ row[6] }}</td> 
+              <td>{{ row[7] }}</td>
+              <td>{{ row[8] }}</td> 
+              <td>{{ row[9] }}</td>
+              <td>{{ row[10] }}</td>
+              <td>{{ row[11] }}</td> 
+              <td>{{ row[12] }}</td>
+              <td>{{ row[13] }}</td>
+              <td><input type="submit" name="DeletePayment" value="Delete"/></td>      
+            </tr>
+          {% endfor %}
+        </tbody> 
+      </table>
 
  </div>
 </body>
