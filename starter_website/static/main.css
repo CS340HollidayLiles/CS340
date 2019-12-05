@@ -59,7 +59,13 @@
     align-items: center;
 }
 
+h1 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+}
 
+p {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+}
 
 #number {
   display: flex;
@@ -159,6 +165,96 @@
     align-items: center;
 }
 
-table, th, td {
-  border: 1px solid black;
-}
+#Rooms {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #Rooms td, #Rooms th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Rooms tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Rooms tr:hover {background-color: #ddd;}
+  
+  #Rooms th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #29aaaf;
+    color: white;
+  }
+
+  #Reservations {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #Reservations td, #Reservations th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Reservations tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Reservations tr:hover {background-color: #ddd;}
+  
+  #Reservations th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #29aaaf;
+    color: white;
+  }
+
+
+  #Payments {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #Payments td, #Payments th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Payments tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Payments tr:hover {background-color: #ddd;}
+  
+  #Payments th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #29aaaf;
+    color: white;
+  }
+
+
+  #Guests {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #Guests td, #Guests th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Guests tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Guests tr:hover {background-color: #ddd;}
+  
+  #Guests th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #29aaaf;
+    color: white;
+  }
