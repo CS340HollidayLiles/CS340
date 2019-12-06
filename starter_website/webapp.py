@@ -71,30 +71,61 @@ def confirmation():
     #else:
     return render_template('confirmation.html')#, Form=oForm)
 
-@webapp.route('/home', ['GET'])
+@webapp.route('/home', methods=['GET'])
 def home():
-    if "Check" in request.form:
+    if request.args.get('Check'):
+        print("here")
         db_connection = connect_to_database()
 
-        c_in = request.form['c/i']
-        c_out = request.form['c/o']
-        guests = request.form['guest']
+        c_in = request.args['c/i']
+        c_out = request.args['c/o']
+        guests = request.args['guest']
 
-        query = 'select * from room join reservation_room on room.room_num = reservation_room.room_num
-        join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and
-        ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+        query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
 
-        data = (guests, c_in, c_out, c_in, c_out);
+        data = (guests, c_in, c_out, c_in, c_out)
 
-        result = execute_query(db_connection, query, data);
+        result = execute_query(db_connection, query, data)
+
+        print("hi")
+
+        print(result)
 
         return render_template('booking.html', room=result);
 
     else:
+        print("okay")
         return render_template('home.html');
 
 @webapp.route('/book', methods=['GET'])
 def book(): 
+    print(request.args.get('Search'))
+
+    if request.args.get('Search'):
+        print("here")
+        db_connection = connect_to_database()
+
+        c_in = request.args.get('c/i')
+        c_out = request.args.get('c/o')
+        guests = request.args.get('guest')
+
+        query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+
+        data = (guests, c_in, c_out, c_in, c_out)
+
+        result = execute_query(db_connection, query, data)
+
+        print("hi")
+
+        print(result)
+
+        return render_template('booking.html', room=result);
+
+    else:
+        print("okay")
+        return render_template('booking.html');
+
+
     return render_template('booking.html');
 
 @webapp.route('/index')

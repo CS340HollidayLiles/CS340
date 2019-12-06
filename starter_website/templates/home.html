@@ -3,7 +3,7 @@
 {% block content %}
 <body id="home">
 <div class="white">
-    <form class="container">
+    <form id="homeForm" class="container" action='/home' method="get">
        <div id="check-in" class="search">
             <label for="c/i">Check-In</label>
             <input id="c/i" type="date" class="search-input" name="c/i">
@@ -16,7 +16,7 @@
             <label for="guests">Guests</label>
             <input id="guests" type="number" class="search-input" name="guest">
         </div> 
-        <button id="check-button" type="button" name="Check" onclick="window.location.href='/book'">Check Availability</button>
+        <input id="check-button" type="submit" value="Check Availability" name="Check"/>
     </form>
 </div>
 <div class="info"> 

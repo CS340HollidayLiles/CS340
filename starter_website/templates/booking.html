@@ -3,52 +3,48 @@
 {% block content %}
 <body id="book">
 <div class = "white">
-    <div class="container">
+    <form id="bookForm" class="container" action="/book" method="get">
         <button id="back" type="button" onclick="window.location.href='/home'">&larr;</button>
         <div id="check-in" class="search">
             <label for="c/i">Check-In</label>
-            <input id="c/i" type="date" class="search-input">
+            <input id="c/i" type="date" class="search-input" name="c/i">
         </div>
         <div id="check-out" class="search">
             <label for="c/o">Check-Out</label>
-            <input id="c/o" type="date" class="search-input">
+            <input id="c/o" type="date" class="search-input" name="c/o">
         </div> 
         <div id="number-guests" class="search">
             <label for="guests">Guests</label>
-            <input id="guests" type="number" class="search-input">
+            <input id="guests" type="number" class="search-input" name="guest">
         </div> 
-        <button id="check-button" type="button">Search</button>
-    </div>
+        <input id="check-button" type="submit" value="Search" name="Search"/>
+    </form>
 </div>
 <div class="info">
-    <table>
+    <div id="room">
+     <table id="Rooms">
         <thead>
+          <tr>
+            <th>Room Number</th>
             <th>Room Type</th>
-            <th>Guests Allowed</th>
+            <th>Max Guests</th>
             <th>Price</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-            <td> King</td>
-            <td> 2</td>
-            <td> $153</td>
-            <td> <button type="button" onclick="window.location.href='/guestInformation'">Book Now!</button></td>
-        </tr>
-        <tr>
-            <td> Double Queens</td>
-            <td> 4</td>
-            <td> $145</td>
-            <td> <button type="button" onclick="window.location.href='/guestInformation'"> Book Now!</button></td>
-        </tr>
-        <tr>
-            <td> Double Fulls</td>
-            <td> 4</td>
-            <td> $135</td>
-            <td> <button type="button" onclick="window.location.href='/guestInformation'">Book Now!</button></td>
-        </tr>
-        </tbody>
-    </table>
-    <img id="pic2" src="/static/room2.jpg"></img>
+          {% for row in room %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td> 
+              <td>{{ row[2] }}</td> 
+              <td>{{ row[3] }}</td>
+              <td><input type="submit" name="BookRoom" value="Book"/></td> 
+            </tr>
+          {% endfor %}
+        </tbody> 
+      </table>
+  </div>
 </div>
 </body>
 {% endblock%}
