@@ -6,12 +6,12 @@
     <form id="bookForm" class="container" action="/book" method="get">
         <button id="back" type="button" onclick="window.location.href='/home'">&larr;</button>
         <div id="check-in" class="search">
-            <label for="c/i">Check-In</label>
-            <input id="c/i" type="date" class="search-input" name="c/i">
+            <label for="c_i">Check-In</label>
+            <input id="c_i" type="date" class="search-input" name="c_i">
         </div>
         <div id="check-out" class="search">
-            <label for="c/o">Check-Out</label>
-            <input id="c/o" type="date" class="search-input" name="c/o">
+            <label for="c_o">Check-Out</label>
+            <input id="c_o" type="date" class="search-input" name="c_o">
         </div> 
         <div id="number-guests" class="search">
             <label for="guests">Guests</label>
@@ -22,6 +22,7 @@
 </div>
 <div class="info">
     <div id="room">
+    <form action="/book" method="post">
      <table id="Rooms">
         <thead>
           <tr>
@@ -38,12 +39,19 @@
               <td>{{ row[0] }}</td>
               <td>{{ row[1] }}</td> 
               <td>{{ row[2] }}</td> 
-              <td>{{ row[3] }}</td>
-              <td><input type="submit" name="BookRoom" value="Book"/></td> 
+              <input type="hidden" name="room_num" value="{{ row[0] }}"/>
+              <td>{{ row[3] }}</td> 
+              <td><input type="submit" name="BookRoom" value="Book"/></td>
             </tr>
-          {% endfor %}
+          {% endfor %} 
+            <tr> 
+              <input type="hidden" name="guests" value="{{ reserve[0] }}"/>
+              <input type="hidden" name="in" value="{{ reserve[1] }}"/>
+              <input type="hidden" name="out" value="{{ reserve[2] }}"/>
+            </tr>
         </tbody> 
       </table>
+  </form>
   </div>
 </div>
 </body>
