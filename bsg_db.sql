@@ -8,6 +8,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40101 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Drop GUEST table if it exists
+-- then create GUEST table
+-- references reservation table
+
 drop table if exists guest;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
 /*!40101 set character_set_client = utf8 */;
@@ -21,6 +25,10 @@ create table guest (
 	primary key (guest_id)
 ) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
+
+-- Drop PAYMENT table if it exists
+-- then create PAYMENT table
+-- references reservation table
 
 drop table if exists payment;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
@@ -44,6 +52,10 @@ CREATE TABLE payment (
 ) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
+-- Drop RESERVATION table if it exists
+-- then create RESERVATION table
+-- references guest table, payment table, and room table
+
 drop table if exists reservation;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
 /*!40101 set character_set_client = utf8 */;
@@ -60,6 +72,9 @@ CREATE TABLE reservation (
 ) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
+-- Drop ROOM table if it exists
+-- then create ROOM table
+
 drop table if exists room;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
 /*!40101 set character_set_client = utf8 */;
@@ -71,6 +86,10 @@ CREATE TABLE room (
     PRIMARY KEY (room_num)
 ) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
+
+-- Drop GUEST_ROOM table if it exists
+-- then create GUEST_ROOM table
+-- references guest table and room table
 
 drop table if exists guest_room;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
@@ -84,6 +103,10 @@ CREATE TABLE guest_room (
 ) engine=innodb default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
+-- Drop RESERVATION_ROOM table if it exists
+-- then create RESERVATION_ROOM table
+-- references reservation table and room table
+
 drop table if exists reservation_room;
 /*!40101 set @saved_cs_client   = @@character_set_client */;
 /*!40101 set character_set_client = utf8 */;
@@ -96,36 +119,44 @@ CREATE TABLE reservation_room (
 ) engine=innodb auto_increment=28 default charset=latin1;
 /*!40101 set character_set_client = @saved_cs_client */;
 
+-- Add reference to reservation table
 ALTER TABLE guest 
 	ADD CONSTRAINT guest_fk1 FOREIGN KEY (reservation_id) REFERENCES reservation (reservation_id) ON DELETE SET NULL ON UPDATE CASCADE;
 
+-- Add reference to payment table
 ALTER TABLE payment ADD CONSTRAINT payment_fk1 FOREIGN KEY (reservation_id) REFERENCES reservation (reservation_id) ON DELETE SET NULL ON UPDATE CASCADE;
 
+-- Add reference to guest, payment, and room tables
 ALTER TABLE reservation
 	ADD CONSTRAINT res_fk1 FOREIGN KEY (guest_id) REFERENCES guest  (guest_id) ON DELETE SET NULL ON UPDATE CASCADE,
 	ADD CONSTRAINT res_fk2 FOREIGN KEY (payment_id) REFERENCES payment  (payment_id) ON DELETE SET NULL ON UPDATE CASCADE,
 	ADD CONSTRAINT res_fk3 FOREIGN KEY (room_num) REFERENCES room  (room_num) ON DELETE SET NULL ON UPDATE CASCADE;
 
+-- Insert room of each type to table
 INSERT INTO room (room_num, room_type, max_guests, price) VALUES (101, "Double Queen", 4, 150.00), (204, "Double Queen Suite", 6, 200.00), (146, "King", 2, 175.00), (234, "King Suite", 4, 250.00);
 
+-- Insert reservations - leave out references to payment and guest as they don't exist yet
 INSERT INTO reservation (guest_id, payment_id, room_num, check_in, check_out, num_guests, confirmation_num)
   VALUES  (NULL, NULL, 101, DATE "2015-12-17", DATE "2015-12-19", "4", "48627"), 
           (NULL, NULL, 146, DATE "2015-11-20", DATE "2015-11-24", "2", "34652"), 
           (NULL, NULL, 234, DATE "2016-01-05", DATE "2016-01-06", "2", "98761"), 
           (NULL, NULL, 204, DATE "2016-01-23", DATE "2016-01-27", "3", "79464");
 
+-- Insert guests
 INSERT INTO guest (reservation_id, f_name, l_name, area_code, phone_number)
   VALUES  (1, "Steve", "Matthews", "503", "594758"), 
           (2, "Helen", "Torres", "888", "423631"), 
           (3, "Ana", "Ballard", "971", "483931"), 
           (4, "Lynn", "Mcgee", "493", "293045");
 
+-- Insert payments - one of each type of credit card
 INSERT INTO payment (reservation_id, f_name, l_name, cc_num, cc_type, cc_security_code, house_num, street, city, state, zip_code, country, total_charged)
   VALUES  (2, "Helen", "Torres", "4951236789465123", "846", "Visa","555", "Lafayette Rd.", "Chester", "PA", "19013", "USA", 136.45), 
           (3, "Ana", "Ballard", "3489516278954621", "897", "MasterCard", "89", "Fifth Rd", "Roswell", "GA", "30075", "USA", 243.50), 
           (1, "Steve", "Matthews", "3950682719503845", "456", "American Express", "904", "Pennington Road", "Butler", "PA", "16001", "USA", 594.32), 
           (4, "Lynn", "Mcgee", "9402859023840532", "256", "Discover", "734", "Tarkiln Hill Drive", "Ashburn", "VA", "20147", "USA", 145.52);
 
+-- Add references to guest and payment to the reservations added
 UPDATE reservation SET guest_id = 1, payment_id = 3 WHERE reservation_id = 1;
 UPDATE reservation SET guest_id = 2, payment_id = 1 WHERE reservation_id = 2;
 UPDATE reservation SET guest_id = 3, payment_id = 2 WHERE reservation_id = 3;
