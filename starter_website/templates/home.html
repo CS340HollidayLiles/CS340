@@ -3,21 +3,21 @@
 {% block content %}
 <body id="home">
 <div class="white">
-    <div class="container">
+    <form id="homeForm" class="container" action='/home' method="get">
        <div id="check-in" class="search">
             <label for="c/i">Check-In</label>
-            <input id="c/i" type="date" class="search-input">
+            <input id="c/i" type="date" class="search-input" name="c/i">
         </div>
         <div id="check-out" class="search">
             <label for="c/o">Check-Out</label>
-            <input id="c/o" type="date" class="search-input">
+            <input id="c/o" type="date" class="search-input" name="c/o">
         </div> 
         <div id="number-guests" class="search">
             <label for="guests">Guests</label>
-            <input id="guests" type="number" class="search-input">
+            <input id="guests" type="number" class="search-input" name="guest">
         </div> 
-        <button id="check-button" type="button" onclick="window.location.href='/book'">Check Availability</button>
-    </div>
+        <input id="check-button" type="submit" value="Check Availability" name="Check"/>
+    </form>
 </div>
 <div class="info"> 
     <div id="txtbox">

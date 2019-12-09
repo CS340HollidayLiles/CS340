@@ -14,20 +14,36 @@ def hello():
 @webapp.route('/guestInformation', methods=['POST', 'GET'])
 def guestInformation():
     #oForm = forms.EnterGuestInfo()
-    #info = models.Information()
+    #info = models.Information() 
 
     if request.method == "POST":
         f_name = request.form['f_name']
         l_name = request.form['l_name']
         code = request.form['area_code']
         num = request.form['phone_number']
-
+        reservation = request.form['reservation']
+        room_num = request.form['room']
         db_connection = connect_to_database()
 
         query = 'insert into guest (reservation_id, f_name, l_name, area_code, phone_number) values (%s,%s,%s,%s,%s)'
-        data = (28, f_name, l_name, code, num)
-        execute_query(db_connection, query, data)
-        return render_template('payment.html')
+        query2 = 'select last_insert_id()'
+        query3 = 'update reservation set guest_id = %s where reservation_id = %s'
+        query4 = 'insert into guest_room (guest_id, room_num) values (%s, %s)'
+
+        data = (reservation, f_name, l_name, code, num)
+        result = execute_query(db_connection, query, data)
+
+        result = execute_query(db_connection, query2)
+
+        guest_id = result.fetchall()[0][0]
+
+        data = (guest_id, reservation)
+        result = execute_query(db_connection, query3, data)
+
+        data = (guest_id, room_num)
+        result = execute_query(db_connection, query4, data)
+
+        return render_template('payment.html', data=reservation)
 
     else:
         return render_template('guestInformation.html')#, Form=oForm)
@@ -49,12 +65,23 @@ def payment():
         state = request.form['state']
         zip_code = request.form['zip_code']
         country = request.form['country']
+        reservation = request.form['reservation']
 
         db_connection = connect_to_database()
 
         query = 'insert into payment (reservation_id, f_name, l_name, cc_type, cc_num, cc_security_code, house_num, street, city, state, zip_code, country, total_charged) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-        data = (28, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
+        query2 = 'select last_insert_id()'
+        query3 = 'update reservation set payment_id = %s where reservation_id = %s'
+        
+        data = (reservation, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
         execute_query(db_connection, query, data)
+
+        result = execute_query(db_connection, query2)
+
+        payment = result.fetchall()[0][0]
+        data = (payment, reservation)
+        execute_query(db_connection, query3, data)
+
         return render_template('confirmation.html')
     else:
         return render_template('payment.html')#, Form=oForm)
@@ -71,13 +98,92 @@ def confirmation():
     #else:
     return render_template('confirmation.html')#, Form=oForm)
 
-@webapp.route('/home')
+@webapp.route('/home', methods=['GET'])
 def home():
-    return render_template('home.html');
+    if request.args.get('Check'):
+        print("here")
+        db_connection = connect_to_database()
 
-@webapp.route('/book')
-def book():
-    return render_template('booking.html');
+        c_in = request.args['c/i']
+        c_out = request.args['c/o']
+        guests = request.args['guest']
+
+        query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+
+        data = (guests, c_in, c_out, c_in, c_out)
+
+        result = execute_query(db_connection, query, data)
+
+        print("hi")
+
+        print(result)
+
+        return render_template('booking.html', room=result, reserve=data);
+
+    else:
+        print("okay")
+        return render_template('home.html');
+
+@webapp.route('/book', methods=['GET', 'POST'])
+def book(): 
+    
+    if request.method == 'POST':
+        db_connection = connect_to_database() 
+
+        c_in = request.form.get('in')
+        c_out = request.form.get('out')
+        guests = request.form.get('guests')
+        room = request.form.get('room_num')
+
+        query = 'insert into reservation (room_num, check_in, check_out, num_guests) values (%s, %s, %s, %s)'
+        query2 = 'select last_insert_id()'
+
+        query3 = 'insert into reservation_room (room_num, reservation_id) values (%s, %s)'
+
+        data = (room, c_in, c_out, guests)
+
+        result = execute_query(db_connection, query, data)
+        result = execute_query(db_connection, query2)
+
+        reservation = result.fetchall()[0][0]
+
+        data = (room, reservation)
+        result = execute_query(db_connection, query3, data)
+
+        print(c_in)
+        print(c_out)
+        print(guests)
+        print(room)
+        print(reservation)
+
+        return render_template('guestInformation.html', reserve=reservation, room_num=room)
+
+    else:
+
+        if request.args.get('Search'):
+            print("here")
+            db_connection = connect_to_database()
+
+            c_in = request.args.get('c_i')
+            c_out = request.args.get('c_o')
+            guests = request.args.get('guest')
+
+            query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+
+            data = (guests, c_in, c_out, c_in, c_out)
+
+            result = execute_query(db_connection, query, data)
+
+            print("hi")
+
+            print(result)
+
+            return render_template('booking.html', room=result, reserve=data);
+
+        else:
+            print("okay")
+            reserve = None
+            return render_template('booking.html', reserve=reserve);
 
 @webapp.route('/index')
 def index():
@@ -88,18 +194,22 @@ def admin():
     if request.method == "GET":
         print("MySQL Results")
         db_connection = connect_to_database()
+        
         query1 = 'select * from room'
         roomresult = execute_query(db_connection, query1)
         print(roomresult)
         query2 = 'select * from guest'
         guestresult = execute_query(db_connection, query2)
         print(guestresult)
+        
         query3 = 'select * from reservation'
         reservationresult = execute_query(db_connection, query3)
         print(reservationresult)
+        
         query4 = 'select * from payment'
         paymentresult = execute_query(db_connection, query4)
         print(paymentresult)
+        
         return render_template('admin.html', room=roomresult, guest=guestresult, reservation=reservationresult, payment=paymentresult)
 
 
