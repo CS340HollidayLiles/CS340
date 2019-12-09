@@ -91,7 +91,6 @@ def admin():
         query1 = 'select * from room'
         roomresult = execute_query(db_connection, query1)
         print(roomresult)
-        #query2 = 'select guest_id as GuestID, reservation_id as ReservationID, f_name as FirstName, l_name as LastName, area_code as AreaCode, phone_number as PhoneNumber from guest'
         query2 = 'select * from guest'
         guestresult = execute_query(db_connection, query2)
         print(guestresult)
@@ -203,6 +202,7 @@ def admin():
         elif "DeleteReservation" in request.form:
             print("delete reservation")
             num = request.form['reserve']
+            print("NUM:" + num)
             db_connection = connect_to_database()
             query = 'delete from reservation where reservation_id = (%s)'
             data = (num, )
