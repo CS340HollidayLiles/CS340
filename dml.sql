@@ -70,3 +70,17 @@ WHERE room.room_num NOT IN
   AND num_guests_input < room.max_guests
 );
 
+--Read guest_room table
+SELECT * FROM guest_room;
+
+--Add guest_room
+INSERT INTO guest_room (guest_id, room_num) VALUES (:guest_id, :room_num);
+
+--Update guest_room
+UPDATE guest_room
+  SET guest_id = :guest_id, room_num = :room_num
+  WHERE 
+
+--Read reservation_room table
+SELECT * FROM reservation_room;
+
