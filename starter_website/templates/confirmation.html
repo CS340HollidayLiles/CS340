@@ -9,21 +9,22 @@
       <div>
           <form>
        <h2>Thank you for your payment. Here is your reservation confirmation:</h2>
-       <h4>Name: <i>John Doe</i></h4>
-       <h4>Check-In Date: <i>October 28, 2019</i></h4>
-       <h4>Check-Out Date: <i>October 29, 2019</i></h4>
-       <h4>Number of Guests: <i>4</i></h4>
-       <h4>Room Type: <i>2 Queens</i></h4>
-       <h4>Room Number: <i>304</i></h4>
-       <h4>Credit Card: <i>**** **** **** 7644</i></h4>
-       <h4>Payment Total: <i>$94.64</i></h4>
+       <h4> Confirmation Number: <i>{{ res[3] }} <i/></h4>
+       <h4>Name: <i>{{ guest[0] }} {{ guest[1] }}</i></h4>
+       <h4>Check-In Date: <i>{{ res[0]  }}</i></h4>
+       <h4>Check-Out Date: <i>{{ res[1]  }}</i></h4>
+       <h4>Number of Guests: <i>{{ res[2] }}</i></h4>
+       <h4>Room Type: <i>{{ room[1] }}</i></h4>
+       <h4>Room Number: <i>{{ room[0] }}</i></h4>
+       <h4>Credit Card: <i>{{ payment[2]}}</i></h4>
+       <h4>Payment Total: <i>{{ payment[9] }}</i></h4>
        <br/>
        <br/>
        <h3>Billing Information</h3>
-       <p>John Doe</p>
-       <p>10391 SW 121st St</p>
-       <p>Tualatin, OR 97331</p>
-       <p>United States</p>
+       <p>{{ payment[0] }} {{ payment[1] }}</p>
+       <p>{{ payment[3] }} {{ payment[4] }}</p>
+       <p>{{ payment[5] }}, {{ payment[6] }} {{ payment[7] }}</p>
+       <p>{{ payment[7] }}</p>
        <button type="button" onclick="window.location.href='/home'">Book Another Room</button>
      </form>
  </div>

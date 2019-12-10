@@ -1,5 +1,6 @@
 from flask import Blueprint, Flask, render_template
 from flask import request, redirect
+import random
 import os.path
 from db_connector.db_connector import connect_to_database, execute_query
 #create the web application
@@ -66,6 +67,7 @@ def payment():
         zip_code = request.form['zip_code']
         country = request.form['country']
         reservation = request.form['reservation']
+        r = reservation[0:2]
 
         db_connection = connect_to_database()
 
@@ -73,30 +75,43 @@ def payment():
         query2 = 'select last_insert_id()'
         query3 = 'update reservation set payment_id = %s where reservation_id = %s'
         
-        data = (reservation, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
+        data = (r, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
         execute_query(db_connection, query, data)
 
         result = execute_query(db_connection, query2)
 
         payment = result.fetchall()[0][0]
-        data = (payment, reservation)
+        data = (payment, r)
         execute_query(db_connection, query3, data)
 
-        return render_template('confirmation.html')
+        query4 = 'select room_num, check_in, check_out, num_guests, confirmation_num, guest_id from reservation where reservation_id = %s'
+        data = (r,)
+        result = execute_query(db_connection, query4, data).fetchall()
+        room_num = result[0][0]
+        print(room_num)
+        res_data = [result[0][1], result[0][2], result[0][3], result[0][4]]
+
+        query6 = 'select f_name, l_name from guest where guest_id = %s'
+        result = execute_query(db_connection, query6, (result[0][5],)).fetchall()
+        guest_data = [result[0][0], result[0][1]]
+
+        query5 = 'select room_type from room where room_num = %s'
+        result = execute_query(db_connection, query5, (room_num,)).fetchall()
+        room_data = [room_num, result[0][0]]
+
+        payment_data = [f_name, l_name, cc_num, house, street, city, state, zip_code, country, 94.75]
+
+        print(res_data)
+        print(payment_data)
+        print(room_data)
+        return render_template('confirmation.html', res = res_data, room = room_data, payment = payment_data, guest = guest_data)
     else:
         return render_template('payment.html')#, Form=oForm)
 
 @webapp.route('/confirmation')
 def confirmation():
-    #oForm = forms.ShowConfirmation()
-    #info = models.Information()
 
-    #if request.method == "POST":
-    #    db.session.add(info)
-    #    db.session.commit()
-    #    return render_template ('confirmation.html', info=info)
-    #else:
-    return render_template('confirmation.html')#, Form=oForm)
+    return render_template('confirmation.html')
 
 @webapp.route('/home', methods=['GET'])
 def home():
@@ -134,13 +149,14 @@ def book():
         c_out = request.form.get('out')
         guests = request.form.get('guests')
         room = request.form.get('room_num')
+        confirmation = random.randrange(1000000000)
 
-        query = 'insert into reservation (room_num, check_in, check_out, num_guests) values (%s, %s, %s, %s)'
+        query = 'insert into reservation (room_num, check_in, check_out, num_guests, confirmation_num) values (%s, %s, %s, %s, %s)'
         query2 = 'select last_insert_id()'
 
         query3 = 'insert into reservation_room (room_num, reservation_id) values (%s, %s)'
 
-        data = (room, c_in, c_out, guests)
+        data = (room, c_in, c_out, guests, confirmation)
 
         result = execute_query(db_connection, query, data)
         result = execute_query(db_connection, query2)
