@@ -38,8 +38,12 @@
     <form id="guestUpdateForm" action="/admin" method="post">
        <h2>Update Guest</h2>
        <p>Guest ID:
-         <input type="text" name="guest_id" size="15" maxlength="30"/>
-         </p>
+          <select name="guest_id">
+            {% for row in guest %}
+              <option>{{ row[0] }}</option>
+            {% endfor %}
+          </select>
+        </p>
         <p> Reservation ID:
         <input type = "text" name="reserve" size="15" maxlength="30"/>
         </p>
@@ -65,8 +69,12 @@
      <form id="paymentUpdateForm" action="/admin" method="post">
        <h2>Update Payment</h2>
         <p>Payment ID:
-            <input type="text"  name="payment_id"/>
-            </p>
+            <select name="payment_id">
+                {% for row in payment %}
+                  <option>{{ row[0] }}</option>
+                {% endfor %}
+              </select>
+        </p>
         <p>Reservation ID:
             <input type="text" name="reserve"/>
         </p>
@@ -114,7 +122,11 @@
      <form id="reservationUpdateForm" action="/admin" method="post">
        <h2>Update Reservation</h2>
        <p>Reservation ID:
-            <input type="string" name="reserve">
+          <select name="reservation_id">
+            {% for row in reservation %}
+              <option>{{ row[0] }}</option>
+            {% endfor %}
+          </select>
        </p>
        <p>Guest ID:
             <input type="string" name="guest">
@@ -144,7 +156,11 @@
      <form id="roomUpdateForm" action="/admin" method="post">
        <h2>Update Room</h2>
        <p>Room Number:
-            <input type="string" name="room">
+          <select name="room">
+              {% for row in room %}
+                <option>{{ row[0] }}</option>
+              {% endfor %}
+            </select>
        </p>
        <p>Room Type:
             <select name="type">
