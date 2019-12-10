@@ -2,6 +2,24 @@
 
 {% block content %}
 <head>
+    <script>
+      function delReservation(currElement) {
+        var parentRowIndex = currElement.parentNode.parentNode.rowIndex;
+        document.getElementById("Reservations").deleteRow(parentRowIndex);
+      }
+      function delGuest(currElement) {
+        var parentRowIndex = currElement.parentNode.parentNode.rowIndex;
+        document.getElementById("Guests").deleteRow(parentRowIndex);
+      }
+      function delRoom(currElement) {
+        var parentRowIndex = currElement.parentNode.parentNode.rowIndex;
+        document.getElementById("Rooms").deleteRow(parentRowIndex);
+      }
+      function delPayment(currElement) {
+        var parentRowIndex = currElement.parentNode.parentNode.rowIndex;
+        document.getElementById("Payments").deleteRow(parentRowIndex);
+      }
+    </script>
   <style>
     table, th, td {
       border: 1px solid black;
@@ -42,7 +60,6 @@
          <input type="text" name="phone_number" size="15" maxlength="30"/>
          </p>
        <input type="submit" name="UpdateGuest" value="Update"/>
-       <input type="submit" name="DeleteGuest" value="Delete"/>
      </form>
      <br>
      <form id="paymentUpdateForm" action="/admin" method="post">
@@ -92,7 +109,6 @@
         <input type="text" name="total" size="15" maxlength="30"/>
        </p>
         <input type="submit" name="UpdatePayment" value="Update"/>
-       <input type="submit" name="DeletePayment" value="Delete"/>
 </form>
      <br>
      <form id="reservationUpdateForm" action="/admin" method="post">
@@ -107,7 +123,7 @@
             <input type="string" name="payment">
        </p>
        <p>Room Number:
-            <input tupe="string" name="room">
+            <input type="string" name="room">
        </p>
        <p>Check-In:
             <input type="date" name="check_in">
@@ -123,7 +139,6 @@
         </p>
         <input type="submit" name="AddReservation" value="Add"/>
         <input type="submit" name="UpdateReservation" value="Update"/>
-       <input type="submit" name="DeleteReservation" value="Delete"/>
      </form>
      <br>
      <form id="roomUpdateForm" action="/admin" method="post">
@@ -151,7 +166,6 @@
         </p>
         <input type="submit" name="AddRoom" value="Add"/>
         <input type="submit" name="UpdateRoom" value="Update"/>
-       <input type="submit" name="DeleteRoom" value="Delete"/>
      </form>
 
      <h1>Current Rooms:</h1>
@@ -173,7 +187,7 @@
               <td>{{ row[1] }}</td> 
               <td>{{ row[2] }}</td> 
               <td>{{ row[3] }}</td>
-              <td><input type="submit" name="DeleteRoom" value="Delete"/></td> 
+              <td><input type="submit" name="DeleteRoom" value="Delete" onclick="delRoom(this)"/></td> 
             </tr>
           {% endfor %}
         </tbody> 
@@ -202,7 +216,7 @@
             <td>{{ row[3] }}</td> 
             <td>{{ row[4] }}</td> 
             <td>{{ row[5] }}</td>
-            <td><input type="submit" name="DeleteGuest" value="Delete"/></td> 
+            <td><input type="submit" name="DeleteGuest" value="Delete" onclick="delGuest(this)"/></td> 
           </tr>
         {% endfor %}
       </tbody> 
@@ -235,11 +249,12 @@
               <td>{{ row[5] }}</td>
               <td>{{ row[6] }}</td> 
               <td>{{ row[7] }}</td>
-              <td><input type="submit" name="DeleteReservation" value="Delete"/></td>  
+              <td><input type="submit" name="DeleteReservation" value="Delete" onclick="delReservation(this)"/></td> 
             </tr>
           {% endfor %}
         </tbody> 
       </table>
+      
 
      <h1>Current Payments:</h1>
      <p><i>Refresh Page after adding a payment to see it added below</i></p>
@@ -280,7 +295,7 @@
               <td>{{ row[11] }}</td> 
               <td>{{ row[12] }}</td>
               <td>{{ row[13] }}</td>
-              <td><input type="submit" name="DeletePayment" value="Delete"/></td>      
+              <td><input type="submit" name="DeletePayment" value="Delete" onclick="delPayment(this)"/></td>      
             </tr>
           {% endfor %}
         </tbody> 
