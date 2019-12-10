@@ -70,12 +70,25 @@ def payment():
         r = reservation[0:2]
 
         db_connection = connect_to_database()
+        
+        query4 = 'select room_num, check_in, check_out, num_guests, confirmation_num, guest_id from reservation where reservation_id = %s'
+        data = (r,)
+        result = execute_query(db_connection, query4, data).fetchall()
+        room_num = result[0][0]
+        print(room_num)
+        guest_id =result[0][5]
+        res_data = [result[0][1], result[0][2], result[0][3], result[0][4]]
+
+        query0 = 'select price from room where room_num = %s'
+        data = (room_num,)
+        result = execute_query(db_connection, query0, data).fetchall()
+        price = result[0][0]
 
         query = 'insert into payment (reservation_id, f_name, l_name, cc_type, cc_num, cc_security_code, house_num, street, city, state, zip_code, country, total_charged) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         query2 = 'select last_insert_id()'
         query3 = 'update reservation set payment_id = %s where reservation_id = %s'
         
-        data = (r, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, 94.75)
+        data = (r, f_name, l_name, types, cc_num, cc_code, house, street, city, state, zip_code, country, str(price))
         execute_query(db_connection, query, data)
 
         result = execute_query(db_connection, query2)
@@ -84,22 +97,15 @@ def payment():
         data = (payment, r)
         execute_query(db_connection, query3, data)
 
-        query4 = 'select room_num, check_in, check_out, num_guests, confirmation_num, guest_id from reservation where reservation_id = %s'
-        data = (r,)
-        result = execute_query(db_connection, query4, data).fetchall()
-        room_num = result[0][0]
-        print(room_num)
-        res_data = [result[0][1], result[0][2], result[0][3], result[0][4]]
-
         query6 = 'select f_name, l_name from guest where guest_id = %s'
-        result = execute_query(db_connection, query6, (result[0][5],)).fetchall()
+        result = execute_query(db_connection, query6, (guest_id,)).fetchall()
         guest_data = [result[0][0], result[0][1]]
 
         query5 = 'select room_type from room where room_num = %s'
         result = execute_query(db_connection, query5, (room_num,)).fetchall()
         room_data = [room_num, result[0][0]]
 
-        payment_data = [f_name, l_name, cc_num, house, street, city, state, zip_code, country, 94.75]
+        payment_data = [f_name, l_name, cc_num, house, street, city, state, zip_code, country, str(price)]
 
         print(res_data)
         print(payment_data)
