@@ -296,8 +296,7 @@ def admin():
             return render_template('admin.html')
 
         elif "AddReservation" in request.form:
-            print("insert reservation")
-            reserve = request.form['reserve']
+            print("insert reservation") 
             guest = request.form['guest']
             payment = request.form['payment']
             room = request.form['room']
@@ -306,8 +305,7 @@ def admin():
             num = request.form['num']
             confirm = request.form['confirm']
 
-            db_connection = connect_to_database()
-
+            db_connection = connect_to_database() 
             query = 'insert into reservation (guest_id, payment_id, room_num, check_in, check_out, num_guests, confirmation_num) values (%s,%s,%s,%s,%s,%s,%s)'
             data = (guest, payment, room, check_in, check_out, num, confirm)
             execute_query(db_connection, query, data)
@@ -343,7 +341,7 @@ def admin():
 
         elif "AddRoom" in request.form:
             print("insert room")
-            room = request.form['room']
+            room = request.form['room_add']
             types = request.form['type']
             guests = request.form['guests']
             price = request.form['price']
