@@ -148,21 +148,11 @@ p {
     margin-top: 28px;
 }
 
-#confirmation {
-
-}
-
-#confirmationpic {
-   }
-
-#guestInfo {
-
-}
-
 #guestInfoPic {
-  height: 70%;
-  width: 35%;
+  height: 65%;
+  width: 30%;
   padding: 4px;
+  margin-right: 50px;
 }
 
 #paymentInfo {
@@ -196,12 +186,18 @@ p {
 }
 
 #guestInfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-content: center;
-    align-items: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  margin-right: 30px;
+  width: 50%;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-content: right;
+  align-items: right;
+  justify-content: space-evenly;
+  border-radius: 2px;
+  z-index: 0;
+  float: right;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #Rooms {
