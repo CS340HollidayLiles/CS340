@@ -1,14 +1,15 @@
 
 #home {
     background: url('/static/beach.jpg');
-    height: 50%
+    height: 50%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-#payment {
-    height: 50%;
+#paymentpic {
+  max-width: 100%;
 }
 
 #book {
@@ -17,10 +18,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #pic2 {
-
     height: 70%;
     width: 35%;
     border: 2px solid black;
@@ -57,6 +58,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 .book_info {
@@ -70,14 +72,32 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 h1 {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#paymentTitle{
+  display: inline-block;
+}
+
+h2 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#main {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  display: inline-block;
 }
 
 p {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #number {
@@ -121,6 +141,7 @@ p {
     flex-direction: column;
     justify-content: space-evenly;
     height: 90px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #check-button {
@@ -145,13 +166,17 @@ p {
 }
 
 #paymentInfo {
-
-}
-
-#paymentInfoPic {
-  height: 70%;
-  width: 35%;
-  padding: 4px;
+  margin-left: 30px;
+  width: 50%;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-content: left;
+  align-items: left;
+  justify-content: space-evenly;
+  border-radius: 2px;
+  z-index: 1;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #name {
@@ -176,6 +201,7 @@ p {
     justify-content: space-evenly;
     align-content: center;
     align-items: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #Rooms {
