@@ -156,6 +156,14 @@ INSERT INTO payment (reservation_id, f_name, l_name, cc_num, cc_type, cc_securit
           (1, "Steve", "Matthews", "3950682719503845", "456", "American Express", "904", "Pennington Road", "Butler", "PA", "16001", "USA", 594.32), 
           (4, "Lynn", "Mcgee", "9402859023840532", "256", "Discover", "734", "Tarkiln Hill Drive", "Ashburn", "VA", "20147", "USA", 145.52);
 
+-- Insert into reservation_room
+INSERT INTO reservation_room (reservation_id, room_num)
+  VALUES (1, 101), (2, 146), (3, 234), (4, 204);
+
+-- INSERT into guest_room
+INSERT INTO guest_room (guest_id, room_num)
+  VALUES (1, 101), (2, 146), (3, 234), (4, 204);
+
 -- Add references to guest and payment to the reservations added
 UPDATE reservation SET guest_id = 1, payment_id = 3 WHERE reservation_id = 1;
 UPDATE reservation SET guest_id = 2, payment_id = 1 WHERE reservation_id = 2;

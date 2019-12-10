@@ -108,9 +108,9 @@ def home():
         c_out = request.args['c/o']
         guests = request.args['guest']
 
-        query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+        query = 'select * from room where max_guests >= %s and room_num not in (select distinct room.room_num from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where ((DATE %s < check_in and DATE %s >= check_in) or (DATE %s >= check_in and DATE %s <= check_out)))'
 
-        data = (guests, c_in, c_out, c_in, c_out)
+        data = (guests, c_in, c_out, c_in, c_in)
 
         result = execute_query(db_connection, query, data)
 
@@ -168,9 +168,9 @@ def book():
             c_out = request.args.get('c_o')
             guests = request.args.get('guest')
 
-            query = 'select room.room_num, room_type, max_guests, price from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where max_guests > %s and ((%s < check_in and %s < check_in) or (%s > check_out and %s > check_out))'
+            query = 'select * from room where max_guests >= %s and room_num not in (select distinct room.room_num from room join reservation_room on room.room_num = reservation_room.room_num join reservation on reservation_room.reservation_id = reservation.reservation_id where ((DATE %s < check_in and DATE %s >= check_in) or (DATE %s >= check_in and DATE %s <= check_out)))'
 
-            data = (guests, c_in, c_out, c_in, c_out)
+            data = (guests, c_in, c_out, c_in, c_in)
 
             result = execute_query(db_connection, query, data)
 

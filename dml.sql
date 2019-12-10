@@ -76,11 +76,16 @@ SELECT * FROM guest_room;
 --Add guest_room
 INSERT INTO guest_room (guest_id, room_num) VALUES (:guest_id, :room_num);
 
---Update guest_room
-UPDATE guest_room
-  SET guest_id = :guest_id, room_num = :room_num
-  WHERE 
+--Delete from guest_room
+DELETE FROM guest_room WHERE guest_id = :guest_id and room_num = :room_num;
+
+-- I did not put update queries in for either guest_room or reservation_room because I felt
+-- that they were not necessary and to properly identify an entry in either table you need 
+-- all the properties of each entry. Seems reasonable to delete the entry and insert a new
+-- one if necessary.
 
 --Read reservation_room table
 SELECT * FROM reservation_room;
 
+--Delete from reservation_room table
+DELETE FROM reservation_room WHERE reservation_id =:reservation_id and room_num = :room_num;
