@@ -2,15 +2,14 @@
 
 {% block content %}
 <body>
+    <img id=paymentpic src="/static/paymentpic.jpg" width="1500" height="350"/>
     <title>Payment Information</title>
-    <div id="payment">
-    <img src="/static/paymentpic.jpg"></img>
-</div>
-    <h1>Payment</h1>
-     <form>
-       <input type="button" value=&larr; onclick="history.back()">
-     </form>
-   <div id="paymentInfo">
+    <div id="main">
+      <form>
+          <h1 id=paymentTitle><input type="button" value=&larr; onclick="history.back()"/>  Payment</h1>
+      </form>
+    </div>
+    <div id="paymentInfo"></div>
      <form id="addpayment" action="/payment" method="post">
        <br/>
        <h2>Please enter the following (required)...</h2>
