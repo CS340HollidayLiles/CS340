@@ -59,16 +59,16 @@ DELETE FROM payment WHERE payment_id = :payment_id_from_update_form;
 SELECT * FROM payment; 
 
 --Check availability button (list open rooms to make a reservation)
-SELECT room.room_type, room.max_guests, room.price AS RoomType, MaxGuests, Price
-WHERE room.room_num NOT IN
+-- Find the rooms for the reservations made within that check in and out time
+-- display rooms that are not those ones, and can hold the number of guests needed
+SELECT * FROM room 
+WHERE max_guests >= %s AND room_num NOT IN
 ( 
-   SELECT room_num FROM reservation r
-   INNER JOIN room ON reservations.room_num = room.room_num
-   WHERE (check_in_input <= r.check_in AND check_out_input >= r.check_out)
-      OR (check_in_input < r.check_out AND check_out >= r.check_out)
-      OR (r.check_in <= check_in AND r.check_out >= check_in_input)
-  AND num_guests_input < room.max_guests
-);
+   SELECT DISTINCT room.room_num FROM room
+   JOIN reservation_room ON room.room_num = reservation_room.room_num
+   JOIN reservation ON reservation_room.reservation_id = reservation.reservation_id
+   WHERE ((DATE %s < check_in and DATE %s >= check_in)
+        or (DATE %s >= check_in and DATE %s <= check_out)));
 
 --Read guest_room table
 SELECT * FROM guest_room;
